@@ -1,0 +1,17 @@
+{
+    "marcferp221": {
+        "nome_completo": "Márcio Ferreira Pereira",
+        "email": [
+            "marciofp@gmail.com"
+        ],
+        "senha": "mFp@12rr",
+        "telefone": [
+            "(11) 71237-3804"
+        ],
+        "localizacao": {
+            "cep": "01001-000",
+            "logradouro": "Praça da Sé",
+            "uf": "SP"
+        }
+    }
+}

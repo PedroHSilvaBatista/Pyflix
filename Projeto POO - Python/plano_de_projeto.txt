@@ -1,0 +1,38 @@
+Ideia do Projeto:
+
+Criar um sistema de Filmes, de modo a aplicar o paradigma de Programação Orientada a Objetos (POO) + Manipulação de Arquivos + API (Consumo e Criação) 
+
+- Criar um ambiente virtual para isolar as dependências
+- Criar classes para cada categoria de streaming. Ex: Filmes, Séries, Documentários
+- Utilizar arquivos json para guardar e enviar dados
+- Utilizar o FastAPI para criar a API, assim como desenvolver uma API mais robusta
+
+Bibliotecas e dependências uitilizadas:
+    - Requests (Fazer requisições HTTP)
+    - FastAPI (Criação de desenvolvimento de API's)
+    - Uvicorn (Subir um servidor)
+
+
+Função menu:
+    - 1: Cadastro
+    - 2: Login
+    - 3: Listar todos os títulos em catálogo
+    - 4: Sugerir um título ao catálogo
+    - 5: Avaliar um título do catálogo
+    - 6: Acrescentar a lista de desejos/espera
+    - 7: Exibir o tempo de maratona para assistir todos os filmes da lista de desejo
+
+
+Estrutura de um usuário em dicionário = {"marcferp221": {"nome_completo": "Márcio Ferreira Pereira",
+                                                            "email(s)": [marciofp@gmail.com, marcioferper@outlook.com.br],
+                                                            "senha": "mFp@12rr",
+                                                            "telefone(s)": [11712373804, 11 98878-6712],
+                                                            "localizacao": 01001000}} 
+
+Cadastro de usuário(requisitos): 
+    - Nome de usuário
+    - Nome completo
+    - e-mail(s)
+    - senha
+    - Telefone(s)
+    - CEP
