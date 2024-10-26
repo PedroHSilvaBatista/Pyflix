@@ -7,7 +7,6 @@ class Titulo():
         self._tempo_de_duracao = tempo_de_duracao
         self._categoria = categoria
         self._sinopse = sinopse
-        self._avaliacao = 0
 
     @abstractmethod
     def avaliar(self, nota):

@@ -27,7 +27,7 @@ Estrutura de um usuário em dicionário = {"marcferp221": {"nome_completo": "Má
                                                             "email(s)": [marciofp@gmail.com, marcioferper@outlook.com.br],
                                                             "senha": "mFp@12rr",
                                                             "telefone(s)": [11712373804, 11 98878-6712],
-                                                            "localizacao": 01001000}} 
+                                                            "localizacao": 01001000}}
 
 Cadastro de usuário(requisitos): 
     - Nome de usuário
@@ -36,3 +36,39 @@ Cadastro de usuário(requisitos):
     - senha
     - Telefone(s)
     - CEP
+
+
+Estrutura da classe abstrata Titulo:
+    Recebe como atributos:
+        - Nome
+        - Ano de Lançamento
+        - Tempo de Duração em Minutos
+        - Categoria/Gênero
+        - Sinopse
+    Possui como métodos abstratos:
+        - Função avaliar: Exige que toda classe que herda de Titulo possa ser avaliada
+        - Função getclassificacao: Exige que toda classe que herda de Titulo possa acessar a nota que o filme teria
+    
+
+Estrutura da classe Filme que herda de Titulo:
+    Recebe como atributos:
+        - Todas os atributos de Titulo
+        - Diretor
+        - Studio
+    Possui como funções:
+        - Função __str__: Função especial do Python que retorna uma representação em string do objeto
+        - Função avaliar: Função que permite o usuário atribuir uma nota ao filme
+        - Função getclassificacao: Função que apresenta a nota de um filme ao usuário com base na média de avaliações
+        - Método da clase listar_filmes: Função que exibe todos os filmes presentes no catálogo e que estão armazenados em uma lista da classe
+
+
+Estrutura da classe Serie que herda de Titulo
+    Recebe como atributos:
+        - Todas os atributos de Titulo
+        - Número de temporadas
+        - Número de episódios por temporada
+    Possui como funções:
+        - Função __str__: Função especial do Python que retorna uma representação em string do objeto
+        - Função avaliar: Função que permite o usuário atribuir uma nota ao série
+        - Função getclassificacao: Função que apresenta a nota de um série ao usuário com base na média de avaliações
+        - Método da clase listar_filmes: Função que exibe todos as séries presentes no catálogo e que estão armazenados em uma lista da classe
