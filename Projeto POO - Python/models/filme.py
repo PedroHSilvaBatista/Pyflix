@@ -11,34 +11,48 @@ class Filme(Titulo):
         self._avaliacoes = []
         Filme.catalogo_de_filmes.append(self)
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Esta função retorna uma representação em string do filme com algumas informações importantes"""
         return f'Nome: {self._nome} | Ano de Lançamento: {self._ano_de_lancamento}'
     
-    def avaliar(self, nota):
-        self._avaliacoes.append(nota)
+    def avaliar(self, nota) -> None:
+        """Esta função atribui uma nota a lista de avaliações do objeto e não possui retorno"""
+        if type(nota) == float or type(nota) == int:
+            if nota < 0 or nota > 10:
+                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                print('Por favor, tente novamente mais tarde.')
+            else:
+                self._avaliacoes.append(nota)
+        else:
+            print('Erro. Por favor, digite um valor real para a atribuição da nota')
 
     @property
-    def getclassificacao(self):
+    def getclassificacao(self) -> float:
+        """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado"""
+        if not self._avaliacoes:
+            return 'Nenhuma avaliação registrada no momento'
         return sum(self._avaliacoes) / len(self._avaliacoes)
 
     # Criar uma classmethod para listar todos os filmes do catálogo
 
     @classmethod
-    def listar_filmes(cls):
+    def listar_filmes(cls) -> None:
+        """Esta função lista todos os filmes já registrados e não possui retorno"""
         print(f'{"Nome".ljust(25)} | {"Ano de Lançamento".ljust(25)} | {"Gênero".ljust(25)}')
         for filme in cls.catalogo_de_filmes:
             print(f'{filme._nome.ljust(25)} | {str(filme._ano_de_lancamento).ljust(25)} | {filme._categoria.ljust(25)}')
 
     # Montar uma ficha técnica do filme, de modo a exibir todas as informações do filme
 
-    def exibir_ficha_tecnica(self):
+    def exibir_ficha_tecnica(self) -> None:
+        """Esta função exibe a ficha técnica completa de um filme e não possui retorno"""
         ficha_tecnica = f'''
-        Filme: {str(self._nome)}
-        Ano: {str(self._ano_de_lancamento)}
-        Gênero: {str(self._categoria)}
-        Sinopse: {str(self._sinopse)}
-        Diretor: {str(self._diretor)}
-        Stúdio: {str(self._studio)}
+        Filme: {self._nome}
+        Ano: {self._ano_de_lancamento}
+        Gênero: {self._categoria}
+        Diretor: {self._diretor}
+        Stúdio: {self._studio}
+        Sinopse: {self._sinopse}
         '''
         print('-=' * 35)
         print(ficha_tecnica)
