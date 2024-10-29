@@ -1,4 +1,4 @@
-from titulo import Titulo
+from models.titulo import Titulo
 
 class Filme(Titulo):
 
@@ -30,7 +30,7 @@ class Filme(Titulo):
     def getclassificacao(self) -> float:
         """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado"""
         if not self._avaliacoes:
-            return 'Nenhuma avaliação registrada no momento'
+            return 'Nenhuma avaliação registrada no momento 😕'
         return sum(self._avaliacoes) / len(self._avaliacoes)
 
     # Criar uma classmethod para listar todos os filmes do catálogo
@@ -38,30 +38,37 @@ class Filme(Titulo):
     @classmethod
     def listar_filmes(cls) -> None:
         """Esta função lista todos os filmes já registrados e não possui retorno"""
-        print(f'{"Nome".ljust(25)} | {"Ano de Lançamento".ljust(25)} | {"Gênero".ljust(25)}')
+        print(f'{"Nome".ljust(25)} | {"Ano de Lançamento".ljust(25)} | {"Gênero Principal".ljust(25)}')
         for filme in cls.catalogo_de_filmes:
-            print(f'{filme._nome.ljust(25)} | {str(filme._ano_de_lancamento).ljust(25)} | {filme._categoria.ljust(25)}')
+            print(f'{filme._nome.ljust(25)} | {str(filme._ano_de_lancamento).ljust(25)} | {filme._categoria[0].ljust(25)}')
 
     # Montar uma ficha técnica do filme, de modo a exibir todas as informações do filme
 
     def exibir_ficha_tecnica(self) -> None:
         """Esta função exibe a ficha técnica completa de um filme e não possui retorno"""
-        ficha_tecnica = f'''
-        Filme: {self._nome}
-        Ano: {self._ano_de_lancamento}
-        Gênero: {self._categoria}
-        Diretor: {self._diretor}
-        Stúdio: {self._studio}
-        Sinopse: {self._sinopse}
-        '''
         print('-=' * 35)
-        print(ficha_tecnica)
+        print(f'Filme: {self._nome}')
+        print(f'Ano: {self._ano_de_lancamento}')
+
+        print(f'Gênero: ', end='')
+        generos = self._categoria
+        for i in range(len(generos)):
+            if i == len(generos) - 1:
+                print(f'{generos[i]}', end='')
+            else:
+                print(f'{generos[i]} ● ', end='')
+
+        print(f'\nDiretor: {self._diretor}')
+        print(f'Stúdio: {self._studio}')
+        print(f'Sinopse: {self._sinopse}')
         print('-=' * 35)
-        
 
 
-filme1 = Filme('O Poderoso Chefão', 1972, 275, 'Crime', 'Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.', 'Francis Ford Coppola', 'Paramount Pictures')
+# Não se esqueça que os objetos da classe serão salvos em arquivos json
 
+generos = ['Crime', 'Ação', 'Clássico']
+
+filme1 = Filme('O Poderoso Chefão', 1972, 275, generos, 'Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.', 'Francis Ford Coppola', 'Paramount Pictures')
 
 Filme.listar_filmes()
 filme1.avaliar(10)

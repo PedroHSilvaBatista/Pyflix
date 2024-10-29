@@ -1,4 +1,4 @@
-from titulo import Titulo
+from models.titulo import Titulo
 
 class Documentario(Titulo):
 
@@ -62,7 +62,9 @@ class Documentario(Titulo):
         print('-=' * 35)
 
 
-documentario = Documentario('Brasil 2002', 2022, 92, 'Documentário', 'O documentário mostra os bastidores da seleção barsileira que conquistou a Copa do Mundo de 2002, com imagens inéditas e entrevistas com os jogadores', 'Luis Ara', 'Futebol')
+# Não se esqueça que os objetos da classe serão salvos em arquivos json
+
+documentario = Documentario('Brasil 2002', 2022, 92, 'Documentário', 'O documentário mostra os bastidores da seleção brasileira que conquistou a Copa do Mundo de 2002, com imagens inéditas e entrevistas com os jogadores', 'Luis Ara', 'Futebol')
 
 documentario.avaliar(-1)
 

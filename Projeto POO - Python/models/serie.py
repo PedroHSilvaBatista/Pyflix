@@ -1,4 +1,4 @@
-from titulo import Titulo
+from models.titulo import Titulo
 
 class Serie(Titulo):
     
@@ -32,7 +32,7 @@ class Serie(Titulo):
     def _getclassificacao(self) -> str:
         """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado em forma de string"""
         if not self._avaliacoes:
-            return 'Nenhuma avaliação registrada no momento'
+            return 'Nenhuma avaliação registrada no momento 😕'
         return f'{(sum(self._avaliacoes) / len(self._avaliacoes) / 2):.2f}'
 
     @classmethod
@@ -61,6 +61,8 @@ class Serie(Titulo):
         print(f'Sinopse: {self._sinopse}')
         print('-=' * 35)
        
+
+# Não se esqueça que os objetos da classe serão salvos em arquivos json
 
 genero = ['Comédia', 'Irreverente', 'Sitcom']
 
