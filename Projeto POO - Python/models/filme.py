@@ -4,10 +4,10 @@ class Filme(Titulo):
 
     catalogo_de_filmes = []
 
-    def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, diretor, studio):
+    def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, diretor, estudio):
         super().__init__(nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse)
         self._diretor = diretor
-        self._studio = studio
+        self._estudio = estudio
         self._avaliacoes = []
         Filme.catalogo_de_filmes.append(self)
 
@@ -25,6 +25,34 @@ class Filme(Titulo):
                 self._avaliacoes.append(nota)
         else:
             print('Erro. Por favor, digite um valor real para a atribuição da nota')
+
+    @property
+    def getnome(self):
+        return self._nome
+    
+    @property
+    def getanodelancamento(self):
+        return self._ano_de_lancamento
+    
+    @property
+    def gettempodeduracao(self):
+        return self._tempo_de_duracao
+
+    @property
+    def getcategoria(self):
+        return self._categoria
+    
+    @property
+    def getsinopse(self):
+        return self._sinopse
+    
+    @property
+    def getdiretor(self):
+        return self._diretor
+    
+    @property
+    def getestudio(self):
+        return self._estudio
 
     @property
     def getclassificacao(self) -> float:
@@ -59,20 +87,34 @@ class Filme(Titulo):
                 print(f'{generos[i]} ● ', end='')
 
         print(f'\nDiretor: {self._diretor}')
-        print(f'Stúdio: {self._studio}')
+        print(f'Stúdio: {self._estudio}')
         print(f'Sinopse: {self._sinopse}')
         print('-=' * 35)
+    
+    def serializar_objeto(self):
+        return {
+            "nome": self.getnome,
+            "ano_de_lancamento": self.getanodelancamento,
+            "tempo_de_duracao_em_minutos": self.gettempodeduracao,
+            "categorias": self.getcategoria,
+            "sinopse": self.getsinopse,
+            "diretor": self.getdiretor,
+            "estudio": self.getestudio,
+            "nota": self.getclassificacao,
+        }
 
 
-# Não se esqueça que os objetos da classe serão salvos em arquivos json
-
-generos = ['Crime', 'Ação', 'Clássico']
-
-filme1 = Filme('O Poderoso Chefão', 1972, 275, generos, 'Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.', 'Francis Ford Coppola', 'Paramount Pictures')
-
-Filme.listar_filmes()
+filme1 = Filme('O Poderoso Chefão', 1972, 175, ['Crime', 'Ação', 'Clássico'], 'Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.', 'Francis Ford Coppola', 'Paramount Pictures')
 filme1.avaliar(10)
+filme1.avaliar(9.75)
+filme1.avaliar(9.50)
 
-print(filme1.getclassificacao)
+filme2 = Filme('Matrix', 1999, 136, ['Ação', 'Sci-Fi', 'Cyberpunk'], 'Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel na guerra contra seus controladores.', 'Lana Wachowski', 'Warner Bros. Entertainment')
+filme2.avaliar(9.0)
+filme2.avaliar(8.5)
+filme2.avaliar(9.50)
 
-filme1.exibir_ficha_tecnica()
+filme3 = Filme('Oppenheimer', 2023, 180, ['Drama', 'History', 'Biografia'], 'A história do cientista americano J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica.', 'Christopher Nolan', 'Universal Studios')
+filme3.avaliar(9.0)
+filme3.avaliar(8.0)
+filme3.avaliar(8.8)

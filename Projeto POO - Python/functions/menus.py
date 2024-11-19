@@ -10,3 +10,14 @@ def menu() -> None:
     - 8: Sair do programa
     '''
     print(menu)
+
+
+def exibir_categorias():
+    categorias = '''
+    1 - Filme
+    2 - Série
+    3 - Documentário
+    '''
+    print('-=' * 30)
+    print(categorias)
+    print('-=' * 30)

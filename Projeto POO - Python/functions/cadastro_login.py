@@ -95,7 +95,6 @@ def login(status_login: bool) -> bool:
         print('Por favor, digite um nome de usuário válido')
         nome_de_usuario = input('Digite seu nome de usuário: ')
 
-
     print('AVISO: Você terá 3 tentativas para acertar sua senha')
     tentativas = 3
     while tentativas > 0:
