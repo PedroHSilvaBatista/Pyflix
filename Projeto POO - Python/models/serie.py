@@ -2,14 +2,14 @@ from models.titulo import Titulo
 
 class Serie(Titulo):
     
-    catalogo_series = []
+    catalogo_de_series = []
 
     def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, numero_de_temporadas, numero_de_episodios):
         super().__init__(nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse)
         self._numero_de_temporadas = numero_de_temporadas
         self._numero_de_episodios = numero_de_episodios
         self._avaliacoes = []
-        Serie.catalogo_series.append(self)
+        Serie.catalogo_de_series.append(self)
 
     
     def __str__(self) -> str:
@@ -34,6 +34,34 @@ class Serie(Titulo):
         if not self._avaliacoes:
             return 'Nenhuma avaliação registrada no momento 😕'
         return f'{(sum(self._avaliacoes) / len(self._avaliacoes) / 2):.2f}'
+    
+    @property
+    def getnome(self):
+        return self._nome
+    
+    @property
+    def getanodelancamento(self):
+        return self._ano_de_lancamento
+    
+    @property
+    def gettempodeduracao(self):
+        return self._tempo_de_duracao
+    
+    @property
+    def getcategoria(self):
+        return self._categoria
+    
+    @property
+    def getsinopse(self):
+        return self._sinopse
+    
+    @property
+    def getnumerodetemporadas(self):
+        return self._numero_de_temporadas
+    
+    @property
+    def getnumerodeepisodios(self):
+        return self._numero_de_episodios
 
     @classmethod
     def listar_series(cls) -> None:
@@ -60,19 +88,34 @@ class Serie(Titulo):
         print(f'Número de episódios: {self._numero_de_episodios}')
         print(f'Sinopse: {self._sinopse}')
         print('-=' * 35)
+
+    
+    def serializar_objeto(self):
+        return {
+            "nome": self.getnome,
+            "ano_de_lancamento": self.getanodelancamento,
+            "tempo_de_duracao_aproximado_em_minutos": self.gettempodeduracao,
+            "categorias": self.getcategoria,
+            "sinopse": self.getsinopse,
+            "numero_de_temporadas": self.getnumerodetemporadas,
+            "numero_aproximado_de_episodios": self.getnumerodeepisodios,
+            "nota": self._getclassificacao,
+        }
        
 
 # Não se esqueça que os objetos da classe serão salvos em arquivos json
 
-genero = ['Comédia', 'Irreverente', 'Sitcom']
+serie1 = Serie('The Office', 2005, 4560, ['Comédia', 'Irreventes', 'Sitcom'], 'Esta adaptação americana se passa em uma empresa de papel em Scranton, Pensilvânia e tem um estilo de documentário semelhante ao original britânico estrelado por Ricky Gervais.', 9, 201)
+serie1.avaliar(9.5)
+serie1.avaliar(8.5)
+serie1.avaliar(9.0)
 
-serie = Serie('The Office', 2005, 2000, genero, 'Esta adaptação americana se passa em uma empresa de papel em Scranton, Pensilvânia e tem um estilo de documentário semelhante ao original britânico estrelado por Ricky Gervais.', 9, 201)
-serie.avaliar(10)
+serie2 = Serie('Vikings', 2013, 3916, ['História', 'Ação', 'Drama'], 'A série acompanha a saga dos navegadores nórdicos que exploram - e conquistam - novos territórios nos tempos medievais.', 6, 89)
+serie2.avaliar(8.5)
+serie2.avaliar(9.0)
+serie2.avaliar(8.0)
 
-
-serie2 = Serie('Vikings', 2013, 2500, ['Aventura'], 'A série acompanha a saga dos navegadores nórdicos que exploram - e conquistam - novos territórios nos tempos medievais.', 6, 14)
-serie2.avaliar(9)
-
-Serie.listar_series()
-
-serie.exibir_ficha_tecnica()
+serie3 = Serie('Brooklyn Nine-Nine', 2013, 3366, ['Comédia', 'Sitcom', 'Policial'], 'Jake Peralta é um detetive brilhante e ao mesmo tempo imaturo, que nunca precisou se preocupar em respeitar as regras. Tudo muda quando um capitão exigente assume o comando de seu esquadrão e Jake deve aprender a trabalhar em equipe.', 8, 153)
+serie3.avaliar(9.1)
+serie3.avaliar(7.9)
+serie3.avaliar(8.4)

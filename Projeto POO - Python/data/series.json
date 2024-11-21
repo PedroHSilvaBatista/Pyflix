@@ -1,0 +1,58 @@
+[
+    {
+        "nome": "The Office",
+        "ano_de_lancamento": 2005,
+        "tempo_de_duracao_aproximado_em_minutos": 4560,
+        "categorias": [
+            "Comédia",
+            "Irreventes",
+            "Sitcom"
+        ],
+        "sinopse": "Esta adaptação americana se passa em uma empresa de papel em Scranton, Pensilvânia e tem um estilo de documentário semelhante ao original britânico estrelado por Ricky Gervais.",
+        "numero_de_temporadas": 9,
+        "numero_aproximado_de_episodios": 201,
+        "nota": "4.50"
+    },
+    {
+        "nome": "Vikings",
+        "ano_de_lancamento": 2013,
+        "tempo_de_duracao_aproximado_em_minutos": 3916,
+        "categorias": [
+            "História",
+            "Ação",
+            "Drama"
+        ],
+        "sinopse": "A série acompanha a saga dos navegadores nórdicos que exploram - e conquistam - novos territórios nos tempos medievais.",
+        "numero_de_temporadas": 6,
+        "numero_aproximado_de_episodios": 89,
+        "nota": "4.25"
+    },
+    {
+        "nome": "Brooklyn Nine-Nine",
+        "ano_de_lancamento": 2013,
+        "tempo_de_duracao_aproximado_em_minutos": 3366,
+        "categorias": [
+            "Comédia",
+            "Sitcom",
+            "Policial"
+        ],
+        "sinopse": "Jake Peralta é um detetive brilhante e ao mesmo tempo imaturo, que nunca precisou se preocupar em respeitar as regras. Tudo muda quando um capitão exigente assume o comando de seu esquadrão e Jake deve aprender a trabalhar em equipe.",
+        "numero_de_temporadas": 8,
+        "numero_aproximado_de_episodios": 153,
+        "nota": "4.23"
+    },
+    {
+        "nome": "La Casa de Papel",
+        "ano_de_lancamento": "2017",
+        "tempo_de_duracao_aproximado_em_minutos": "2050",
+        "categorias": [
+            "Assalto",
+            "Drama",
+            "Suspense"
+        ],
+        "sinopse": "Oito ladrões se trancam com reféns na Casa da Moeda da Espanha. Seu líder manipula a polícia para realizar um plano que pode ser o maior roubo da história ou uma missão em vão.",
+        "numero_de_temporadas": "5",
+        "numero_aproximado_de_episodios": "41",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
+    }
+]
