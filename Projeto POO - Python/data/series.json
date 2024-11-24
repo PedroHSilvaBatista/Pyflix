@@ -54,5 +54,19 @@
         "numero_de_temporadas": "5",
         "numero_aproximado_de_episodios": "41",
         "nota": "Nenhuma avaliação registrada no momento 😕"
+    },
+    {
+        "nome": "Breaking Bad",
+        "ano_de_lancamento": "2008",
+        "tempo_de_duracao_aproximado_em_minutos": "3162",
+        "categorias": [
+            "Drama",
+            "Policial",
+            "Suspense"
+        ],
+        "sinopse": "O professor de química Walter White não acredita que sua vida possa piorar ainda mais. Quando descobre que tem câncer terminal, Walter decide arriscar tudo para ganhar dinheiro enquanto pode, transformando sua van em um laboratório de metanfetamina.",
+        "numero_de_temporadas": "5",
+        "numero_aproximado_de_episodios": "62",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
     }
 ]

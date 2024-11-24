@@ -21,9 +21,18 @@
         "nome": "Privacidade Hackeada",
         "ano_de_lancamento": 2019,
         "tempo_de_duracao_em_minutos": 114,
-        "categoria": "Docuementário",
+        "categoria": "Documentário",
         "sinopse": "Entenda como a empresa de análise de dados Cambridge Analytica se tornou o símbolo do lado sombrio das redes sociais após a eleição presidencial de 2016 nos EUA",
         "autor": "Jehane Noujaim",
         "tema": "Internet"
+    },
+    {
+        "nome": "Professor Polvo",
+        "ano_de_lancamento": "2020",
+        "tempo_de_duracao_em_minutos": "90",
+        "categoria": "Documentário",
+        "sinopse": "Em uma floresta subaquática na África do Sul, um cineasta desenvolve uma amizade improvável com um polvo e descobre mais sobre os mistérios do mundo submarino.",
+        "autor": "Pippa Ehrlich",
+        "tema": "Natureza"
     }
 ]

@@ -40,5 +40,19 @@
         "diretor": "Christopher Nolan",
         "estudio": "Universal Studios",
         "nota": 8.6
+    },
+    {
+        "nome": "Gente Grande",
+        "ano_de_lancamento": "2010",
+        "tempo_de_duracao_em_minutos": "102",
+        "categorias": [
+            "Comédia",
+            "Drama",
+            "Buddy"
+        ],
+        "sinopse": "A morte do treinador de basquete de infância de velhos amigos reúne a turma no mesmo lugar que celebraram um campeonato anos atrás. Os amigos, acompanhados de suas esposas e filhos, descobrem que idade não significa o mesmo que maturidade.",
+        "diretor": "Dennis Dugan",
+        "estudio": "Relativity Media",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
     }
 ]

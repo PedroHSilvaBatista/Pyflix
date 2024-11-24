@@ -31,10 +31,11 @@ while True:
             match opcao_usuario_titulo:
                 case '1':
                     print('Aqui estão todos os filmes já catalogados')
-                    Filme.listar_filmes()
+                    # Modifique o método para ler o arquivo .json. Novo nome de método: (listar_catalogo_de_filmes)
+                    Filme.listar_catalogo_de_filmes()
                 case '2':
                     print('Aqui estão todos as séries já catalogadas')
-                    Serie.listar_series()
+                    Serie.listar_catalogo_de_series()
                 case '3':
                     print('Aqui estão todos os documentários já catalogados')
                     Documentario.listar_documentarios()
@@ -93,6 +94,7 @@ while True:
                     subir_dados_series(Serie.catalogo_de_series)
                     print('Série recomendada com sucesso!')
                 case '3':
+                    # Adicione mais um documentário ao banco de dados
                     print('Para que a adição de um documentário seja efetuada, é necessário informar alguns dados antes')
 
                     nome_do_documentario = input('Digite o nome do documentário: ')

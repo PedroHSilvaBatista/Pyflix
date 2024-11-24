@@ -1,15 +1,23 @@
 from models.titulo import Titulo
 
+import os, json
+
+diretorio_atual = os.path.dirname(__file__)
+caminho_filmes = os.path.join(diretorio_atual, '..', 'data', 'filmes.json')
+
+
 class Filme(Titulo):
 
-    catalogo_de_filmes = []
+    with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_leitura:
+        dados_json = json.load(arquivo_leitura)
+    catalogo_de_filmes = [filme for filme in dados_json]
 
     def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, diretor, estudio):
         super().__init__(nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse)
         self._diretor = diretor
         self._estudio = estudio
         self._avaliacoes = []
-        Filme.catalogo_de_filmes.append(self)
+        Filme.catalogo_de_filmes.append(self.serializar_objeto())
 
     def __str__(self) -> str:
         """Esta função retorna uma representação em string do filme com algumas informações importantes"""
@@ -62,16 +70,16 @@ class Filme(Titulo):
         return sum(self._avaliacoes) / len(self._avaliacoes)
 
     # Criar uma classmethod para listar todos os filmes do catálogo
-
     @classmethod
-    def listar_filmes(cls) -> None:
+    def listar_catalogo_de_filmes(cls) -> None:
         """Esta função lista todos os filmes já registrados e não possui retorno"""
+        with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_ler_filmes:
+            dados_json = json.load(arquivo_ler_filmes)
         print(f'{"Nome".ljust(25)} | {"Ano de Lançamento".ljust(25)} | {"Gênero Principal".ljust(25)}')
-        for filme in cls.catalogo_de_filmes:
-            print(f'{filme._nome.ljust(25)} | {str(filme._ano_de_lancamento).ljust(25)} | {filme._categoria[0].ljust(25)}')
+        for filme in dados_json:
+            print(f'{filme["nome"].ljust(25)} | {str(filme["ano_de_lancamento"]).ljust(25)} | {filme["categorias"][0].ljust(25)}')
 
     # Montar uma ficha técnica do filme, de modo a exibir todas as informações do filme
-
     def exibir_ficha_tecnica(self) -> None:
         """Esta função exibe a ficha técnica completa de um filme e não possui retorno"""
         print('-=' * 35)
@@ -102,19 +110,3 @@ class Filme(Titulo):
             "estudio": self.getestudio,
             "nota": self.getclassificacao,
         }
-
-
-filme1 = Filme('O Poderoso Chefão', 1972, 175, ['Crime', 'Ação', 'Clássico'], 'Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.', 'Francis Ford Coppola', 'Paramount Pictures')
-filme1.avaliar(10)
-filme1.avaliar(9.75)
-filme1.avaliar(9.50)
-
-filme2 = Filme('Matrix', 1999, 136, ['Ação', 'Sci-Fi', 'Cyberpunk'], 'Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel na guerra contra seus controladores.', 'Lana Wachowski', 'Warner Bros. Entertainment')
-filme2.avaliar(9.0)
-filme2.avaliar(8.5)
-filme2.avaliar(9.50)
-
-filme3 = Filme('Oppenheimer', 2023, 180, ['Drama', 'History', 'Biografia'], 'A história do cientista americano J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica.', 'Christopher Nolan', 'Universal Studios')
-filme3.avaliar(9.0)
-filme3.avaliar(8.0)
-filme3.avaliar(8.8)
