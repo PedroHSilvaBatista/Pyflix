@@ -23,7 +23,6 @@ class Documentario(Titulo):
         """Esta função retorna uma representação em string do documentário com algumas informações importantes"""
         return f'Nome: {self._nome} | Ano de Lançamento: {self._ano_de_lancamento} | Tema: {self._tema}'
 
-    # Nota não pode ser acima de 10 e muito menos negativa (Faça a validação)
     def avaliar(self, nota:float) -> None:
         """Esta função atribui uma nota a lista de avaliações do objeto e não possui retorno"""
         if type(nota) == float or type(nota) == int:

@@ -1,30 +1,33 @@
 [
     {
         "nome": "Brasil 2002",
-        "ano_de_lancamento": 2022,
-        "tempo_de_duracao_em_minutos": 92,
+        "ano_de_lancamento": "2022",
+        "tempo_de_duracao_em_minutos": "92",
         "categoria": "Documentário",
         "sinopse": "O documentário mostra os bastidores da seleção brasileira que conquistou a Copa do Mundo de 2002, com imagens inéditas e entrevistas com os jogadores",
         "autor": "Luis Ara",
-        "tema": "Futebol"
+        "tema": "Futebol",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
     },
     {
         "nome": "Senna: O Brasileiro, O Herói, O Campeão",
-        "ano_de_lancamento": 2010,
-        "tempo_de_duracao_em_minutos": 105,
+        "ano_de_lancamento": "2010",
+        "tempo_de_duracao_em_minutos": "105",
         "categoria": "Documentário",
         "sinopse": "Um documentário sobre o maior piloto brasileiro de Fórmula 1, Ayrton Senna, que ganhou o campeonato mundial três vezes antes de morrer tragicamente aos 34 anos de idade.",
         "autor": "Manish Pandey",
-        "tema": "Automobilismo"
+        "tema": "Automobilismo",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
     },
     {
         "nome": "Privacidade Hackeada",
-        "ano_de_lancamento": 2019,
-        "tempo_de_duracao_em_minutos": 114,
+        "ano_de_lancamento": "2019",
+        "tempo_de_duracao_em_minutos": "114",
         "categoria": "Documentário",
         "sinopse": "Entenda como a empresa de análise de dados Cambridge Analytica se tornou o símbolo do lado sombrio das redes sociais após a eleição presidencial de 2016 nos EUA",
         "autor": "Jehane Noujaim",
-        "tema": "Internet"
+        "tema": "Internet",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
     },
     {
         "nome": "Professor Polvo",
@@ -33,6 +36,7 @@
         "categoria": "Documentário",
         "sinopse": "Em uma floresta subaquática na África do Sul, um cineasta desenvolve uma amizade improvável com um polvo e descobre mais sobre os mistérios do mundo submarino.",
         "autor": "Pippa Ehrlich",
-        "tema": "Natureza"
+        "tema": "Natureza",
+        "nota": "Nenhuma avaliação registrada no momento 😕"
     }
 ]

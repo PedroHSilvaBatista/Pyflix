@@ -3,6 +3,7 @@ import json
 from functions.menus import menu, exibir_categorias
 from functions.cadastro_login import cadastro, login
 from functions.subir_dados import subir_dados_filmes, subir_dados_series, subir_dados_documentario
+from functions.verificadores import encontrar_filme_no_catalogo
 from models.filme import Filme
 from models.serie import Serie
 from models.documentario import Documentario
@@ -31,7 +32,6 @@ while True:
             match opcao_usuario_titulo:
                 case '1':
                     print('Aqui estão todos os filmes já catalogados')
-                    # Modifique o método para ler o arquivo .json. Novo nome de método: (listar_catalogo_de_filmes)
                     Filme.listar_catalogo_de_filmes()
                 case '2':
                     print('Aqui estão todos as séries já catalogadas')
@@ -50,32 +50,48 @@ while True:
                 case '1':
                     print('Para que a adição de um filme seja efetuada, é necessário informar alguns dados antes')
                     
-                    nome_do_filme = input('Digite o nome do filme: ')
-                    ano_de_lancamento_filme = input('Digite o ano de lançamento: ')
-                    tempo_de_duracao_filme = input('Digite o tempo de duração aproximado do filme em minutos: ')
-                    
-                    print('Digite três categorias que mais combinam com o filme selecionado')
-                    generos_filme = []
-                    for c in range(3):
-                        if c == 0:
-                            generos_filme.append(input('Digite a categoria principal do filme: '))
-                        elif c == 1:
-                            generos_filme.append(input('Digite outra categoria do filme: '))
-                        else:
-                            generos_filme.append(input('Digite a última categoria do filme: '))
-                    
-                    sinopse_filme = input('Diga a sinopse do filme: ')
-                    diretor_filme = input('Diga um dos diretores do filme: ')
-                    estudio_filme = input('Diga o estúdio em que foi produzido o filme: ')
-                    Filme(nome_do_filme, ano_de_lancamento_filme, tempo_de_duracao_filme, generos_filme, sinopse_filme, diretor_filme, estudio_filme)
-                    subir_dados_filmes(Filme.catalogo_de_filmes)
-                    print('Filme recomendado com sucesso!')
+                    nome_do_filme = input('Digite o nome do filme: ').title()
+                    encontrar_filme = encontrar_filme_no_catalogo(nome_do_filme)
+                    if encontrar_filme:
+                        print('O filme que você está tentando cadastrar já se encontra no catálogo')
+                        print('Por favor, tente recomendar um filme que ainda não esteja cadastrado no sistema')
+                    else:
+                        try:
+                            ano_de_lancamento_filme = int(input('Digite o ano de lançamento: '))
+                            tempo_de_duracao_filme = int(input('Digite o tempo de duração aproximado do filme em minutos: '))
+                            print('Digite três categorias que mais combinam com o filme selecionado')
+                            generos_filme = []
+                            for c in range(3):
+                                if c == 0:
+                                    generos_filme.append(input('Digite a categoria principal do filme: '))
+                                elif c == 1:
+                                    generos_filme.append(input('Digite outra categoria do filme: '))
+                                else:
+                                    generos_filme.append(input('Digite a última categoria do filme: '))
+                            
+                            sinopse_filme = input('Diga a sinopse do filme: ')
+                            diretor_filme = input('Diga um dos diretores do filme: ')
+                            estudio_filme = input('Diga o estúdio em que foi produzido o filme: ')
+                            Filme(nome_do_filme, ano_de_lancamento_filme, tempo_de_duracao_filme, generos_filme, sinopse_filme, diretor_filme, estudio_filme)
+                            subir_dados_filmes(Filme.catalogo_de_filmes)
+                            print('Filme recomendado com sucesso!')
+                        except TypeError:
+                            print('Erro, o valor informado não é um valor inteiro')
+                        except Exception as mensagem_erro_geral:
+                            print('Ocorreu um erro inesperado!')
                 case '2':
                     print('Para que a adição de uma série seja efetuada, é necessário informar alguns dados antes')
 
                     nome_da_serie = input('Digite o nome da série: ')
-                    ano_de_lancamento_serie = input('Digite o ano em que a série foi lançada: ')
-                    tempo_de_duracao_serie = input('Digite o tempo de duração total da série (pode ser um valor estimado): ')
+                    try:
+                        ano_de_lancamento_serie = int(input('Digite o ano em que a série foi lançada: '))
+                        tempo_de_duracao_serie = int(input('Digite o tempo de duração total da série (pode ser um valor estimado): '))
+                        numero_de_temporadas_serie = int(input('Diga quantas temporadas a série possui: '))
+                        numero_de_episodios_serie = int(input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): '))
+                    except TypeError:
+                        print('Erro, o valor informado não é um valor inteiro')
+                    except Exception as mensagem_erro_geral:
+                        print('Ocorreu um erro inesperado!')
 
                     print('Digite três categorias que mais combinam com a série selecionada')
                     generos_serie = []
@@ -88,18 +104,22 @@ while True:
                             generos_serie.append(input('Digite a última categoria da série: '))
                     
                     sinopse_serie = input('Diga a sinopse da série: ')
-                    numero_de_temporadas_serie = input('Diga quantas temporadas a série possui: ')
-                    numero_de_episodios_serie = input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): ')
                     Serie(nome_da_serie, ano_de_lancamento_serie, tempo_de_duracao_serie, generos_serie, sinopse_serie, numero_de_temporadas_serie, numero_de_episodios_serie)
                     subir_dados_series(Serie.catalogo_de_series)
                     print('Série recomendada com sucesso!')
                 case '3':
-                    # Adicione mais um documentário ao banco de dados
                     print('Para que a adição de um documentário seja efetuada, é necessário informar alguns dados antes')
 
                     nome_do_documentario = input('Digite o nome do documentário: ')
-                    ano_de_lancamento_documentario = input('Digite o ano em que o documentário foi lançado: ')
-                    tempo_de_duracao_documentario = input('Digite o tempo de duração do documentário em minutos: ')
+
+                    try:
+                        ano_de_lancamento_documentario = int(input('Digite o ano em que o documentário foi lançado: '))
+                        tempo_de_duracao_documentario = int(input('Digite o tempo de duração do documentário em minutos: '))
+                    except TypeError:
+                        print('Erro, o valor informado não é um valor inteiro')
+                    except Exception as mensagem_erro_geral:
+                        print('Ocorreu um erro inesperado!')
+
                     categoria_documentario = input('Digite a categoria do documentário (Ex: Biografia, História): ')
                     sinopse_documentario = input('Diga a sinpose do documentário: ')
                     autor_documentario = input('Digite o autor, roteirista ou produtor do documentário: ')

@@ -67,7 +67,7 @@ class Filme(Titulo):
         """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado"""
         if not self._avaliacoes:
             return 'Nenhuma avaliação registrada no momento 😕'
-        return sum(self._avaliacoes) / len(self._avaliacoes)
+        return f'{sum(self._avaliacoes) / len(self._avaliacoes):2f}'
 
     # Criar uma classmethod para listar todos os filmes do catálogo
     @classmethod
