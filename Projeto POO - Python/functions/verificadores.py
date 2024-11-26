@@ -13,3 +13,21 @@ def encontrar_filme_no_catalogo(nome_do_filme: str):
         if filme["nome"].replace(' ', '') == nome_do_filme.replace(' ', ''):
             return True
     return False
+
+
+def encontrar_serie_no_catalogo(nome_da_serie: str):
+    with open(caminho_series, 'r', encoding='utf-8') as arquivo_series:
+        dados_series = json.load(arquivo_series)
+    for serie in dados_series:
+        if serie["nome"].replace(' ', '') == nome_da_serie.replace(' ', ''):
+            return True
+    return False
+
+
+def encontrar_documentario_no_catalogo(nome_do_documentario: str):
+    with open(caminho_documentarios, 'r', encoding='utf-8') as arquivo_documentarios:
+        dados_documentarios = json.load(arquivo_documentarios)
+    for documentario in dados_documentarios:
+        if documentario["nome"].replace(' ', '') == nome_do_documentario.replace(' ', ''):
+            return True
+    return False

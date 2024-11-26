@@ -3,7 +3,7 @@ import json
 from functions.menus import menu, exibir_categorias
 from functions.cadastro_login import cadastro, login
 from functions.subir_dados import subir_dados_filmes, subir_dados_series, subir_dados_documentario
-from functions.verificadores import encontrar_filme_no_catalogo
+from functions.verificadores import encontrar_filme_no_catalogo, encontrar_serie_no_catalogo, encontrar_documentario_no_catalogo
 from models.filme import Filme
 from models.serie import Serie
 from models.documentario import Documentario
@@ -42,7 +42,6 @@ while True:
                 case _:
                     print('Por favor, digite uma opção válida')
         case '4':
-            # Verificar se o título já se encontra no catálogo
             print('Digite qual categoria que gostaria de recomendar um novo título')
             exibir_categorias()
             opcao_usuario_adicao = input('Digite sua opção: ')
@@ -52,6 +51,7 @@ while True:
                     
                     nome_do_filme = input('Digite o nome do filme: ').title()
                     encontrar_filme = encontrar_filme_no_catalogo(nome_do_filme)
+
                     if encontrar_filme:
                         print('O filme que você está tentando cadastrar já se encontra no catálogo')
                         print('Por favor, tente recomendar um filme que ainda não esteja cadastrado no sistema')
@@ -75,58 +75,67 @@ while True:
                             Filme(nome_do_filme, ano_de_lancamento_filme, tempo_de_duracao_filme, generos_filme, sinopse_filme, diretor_filme, estudio_filme)
                             subir_dados_filmes(Filme.catalogo_de_filmes)
                             print('Filme recomendado com sucesso!')
-                        except TypeError:
+                        except ValueError:
                             print('Erro, o valor informado não é um valor inteiro')
                         except Exception as mensagem_erro_geral:
-                            print('Ocorreu um erro inesperado!')
+                            print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case '2':
                     print('Para que a adição de uma série seja efetuada, é necessário informar alguns dados antes')
 
-                    nome_da_serie = input('Digite o nome da série: ')
-                    try:
-                        ano_de_lancamento_serie = int(input('Digite o ano em que a série foi lançada: '))
-                        tempo_de_duracao_serie = int(input('Digite o tempo de duração total da série (pode ser um valor estimado): '))
-                        numero_de_temporadas_serie = int(input('Diga quantas temporadas a série possui: '))
-                        numero_de_episodios_serie = int(input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): '))
-                    except TypeError:
-                        print('Erro, o valor informado não é um valor inteiro')
-                    except Exception as mensagem_erro_geral:
-                        print('Ocorreu um erro inesperado!')
+                    nome_da_serie = input('Digite o nome da série: ').title()
+                    encontrar_serie = encontrar_serie_no_catalogo(nome_da_serie)
 
-                    print('Digite três categorias que mais combinam com a série selecionada')
-                    generos_serie = []
-                    for c in range(3):
-                        if c == 0:
-                            generos_serie.append(input('Digite a categoria principal da série: '))
-                        elif c == 1:
-                            generos_serie.append(input('Digite outra categoria da série: '))
-                        else:
-                            generos_serie.append(input('Digite a última categoria da série: '))
-                    
-                    sinopse_serie = input('Diga a sinopse da série: ')
-                    Serie(nome_da_serie, ano_de_lancamento_serie, tempo_de_duracao_serie, generos_serie, sinopse_serie, numero_de_temporadas_serie, numero_de_episodios_serie)
-                    subir_dados_series(Serie.catalogo_de_series)
-                    print('Série recomendada com sucesso!')
+                    if encontrar_serie:
+                        print('A série que você está tentando cadastrar já se encontra no catálogo')
+                        print('Por favor, tente recomendar uma série que ainda não esteja cadastrada no sistema')
+                    else:
+                        try:
+                            ano_de_lancamento_serie = int(input('Digite o ano em que a série foi lançada: '))
+                            tempo_de_duracao_serie = int(input('Digite o tempo de duração total da série (pode ser um valor estimado): '))
+                            numero_de_temporadas_serie = int(input('Diga quantas temporadas a série possui: '))
+                            numero_de_episodios_serie = int(input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): '))
+                            print('Digite três categorias que mais combinam com a série selecionada')
+                            generos_serie = []
+                            for c in range(3):
+                                if c == 0:
+                                    generos_serie.append(input('Digite a categoria principal da série: '))
+                                elif c == 1:
+                                    generos_serie.append(input('Digite outra categoria da série: '))
+                                else:
+                                    generos_serie.append(input('Digite a última categoria da série: '))
+                            
+                            sinopse_serie = input('Diga a sinopse da série: ')
+                            Serie(nome_da_serie, ano_de_lancamento_serie, tempo_de_duracao_serie, generos_serie, sinopse_serie, numero_de_temporadas_serie, numero_de_episodios_serie)
+                            subir_dados_series(Serie.catalogo_de_series)
+                            print('Série recomendada com sucesso!')
+                        except ValueError:
+                            print('Erro, o valor informado não é um valor inteiro')
+                        except Exception as mensagem_erro_geral:
+                            print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case '3':
                     print('Para que a adição de um documentário seja efetuada, é necessário informar alguns dados antes')
 
-                    nome_do_documentario = input('Digite o nome do documentário: ')
+                    nome_do_documentario = input('Digite o nome do documentário: ').title()
+                    encontrar_documentario = encontrar_documentario_no_catalogo(nome_do_documentario)
 
-                    try:
-                        ano_de_lancamento_documentario = int(input('Digite o ano em que o documentário foi lançado: '))
-                        tempo_de_duracao_documentario = int(input('Digite o tempo de duração do documentário em minutos: '))
-                    except TypeError:
-                        print('Erro, o valor informado não é um valor inteiro')
-                    except Exception as mensagem_erro_geral:
-                        print('Ocorreu um erro inesperado!')
-
-                    categoria_documentario = input('Digite a categoria do documentário (Ex: Biografia, História): ')
-                    sinopse_documentario = input('Diga a sinpose do documentário: ')
-                    autor_documentario = input('Digite o autor, roteirista ou produtor do documentário: ')
-                    tema_documentario = input('Digite o tema a qual o documentário se trata: ')
-                    Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario, categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario)
-                    subir_dados_documentario(Documentario.catalogo_de_documentarios)
-                    print('Documentário recomendado com sucesso!')
+                    if encontrar_documentario:
+                        print('O documentário que você está tentando cadastrar já se encontra no catálogo')
+                        print('Por favor, tente recomendar um documentário que ainda não esteja cadastrado no sistema')
+                    else:
+                        try:
+                            ano_de_lancamento_documentario = int(input('Digite o ano em que o documentário foi lançado: '))
+                            tempo_de_duracao_documentario = int(input('Digite o tempo de duração do documentário em minutos: '))
+                            categoria_documentario = input('Digite a categoria do documentário (Ex: Biografia, História): ')
+                            sinopse_documentario = input('Diga a sinpose do documentário: ')
+                            autor_documentario = input('Digite o autor, roteirista ou produtor do documentário: ')
+                            tema_documentario = input('Digite o tema a qual o documentário se trata: ')
+                            Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario, categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario)
+                            subir_dados_documentario(Documentario.catalogo_de_documentarios)
+                            print('Documentário recomendado com sucesso!')
+                        except ValueError:
+                            print('Erro, o valor informado não é um valor inteiro')
+                        except Exception as mensagem_erro_geral:
+                            print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case _:
                     print('Por favor, digite uma opção válida')
         case '5':
