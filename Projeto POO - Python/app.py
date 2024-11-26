@@ -139,7 +139,27 @@ while True:
                 case _:
                     print('Por favor, digite uma opção válida')
         case '5':
-            pass
+            print('Digite qual categoria que gostaria de avaliar')
+            exibir_categorias()
+            opcao_usuario_avaliar = input('Digite sua opção: ')
+            match opcao_usuario_avaliar:
+                case '1':
+                    print('Para que se possa avaliar um filme, é necessário primeiro digitar o nome do filme a qual se quer avaliar')
+
+                    usuario_nome_do_filme = input('Digite o nome do filme aqui: ').title()
+                    encontrar_filme_para_avaliar = encontrar_filme_no_catalogo(usuario_nome_do_filme)
+
+                    if encontrar_filme_para_avaliar:
+                        pass
+                    else:
+                        print('O filme digitado não foi encontrado')
+                        print('Por favor, verique se o nome do filme foi inserido corretamente')
+                case '2':
+                    pass
+                case '3':
+                    pass
+                case _:
+                    print('Por favor, digite uma opção válida')
         case '6':
             pass
         case '7':

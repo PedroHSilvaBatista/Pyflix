@@ -6,7 +6,7 @@ caminho_series = os.path.join(diretorio_atual, '..', 'data', 'series.json')
 caminho_documentarios = os.path.join(diretorio_atual, '..', 'data', 'documentarios.json')
 
 
-def encontrar_filme_no_catalogo(nome_do_filme: str):
+def encontrar_filme_no_catalogo(nome_do_filme: str) -> bool:
     with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_filmes:
         dados_filmes = json.load(arquivo_filmes)
     for filme in dados_filmes:
@@ -15,7 +15,7 @@ def encontrar_filme_no_catalogo(nome_do_filme: str):
     return False
 
 
-def encontrar_serie_no_catalogo(nome_da_serie: str):
+def encontrar_serie_no_catalogo(nome_da_serie: str) -> bool:
     with open(caminho_series, 'r', encoding='utf-8') as arquivo_series:
         dados_series = json.load(arquivo_series)
     for serie in dados_series:
@@ -24,7 +24,7 @@ def encontrar_serie_no_catalogo(nome_da_serie: str):
     return False
 
 
-def encontrar_documentario_no_catalogo(nome_do_documentario: str):
+def encontrar_documentario_no_catalogo(nome_do_documentario: str) -> bool:
     with open(caminho_documentarios, 'r', encoding='utf-8') as arquivo_documentarios:
         dados_documentarios = json.load(arquivo_documentarios)
     for documentario in dados_documentarios:

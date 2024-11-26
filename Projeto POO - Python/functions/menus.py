@@ -12,7 +12,7 @@ def menu() -> None:
     print(menu)
 
 
-def exibir_categorias():
+def exibir_categorias() -> None:
     categorias = '''
     1 - Filme
     2 - Série
