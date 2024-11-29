@@ -177,14 +177,11 @@ while True:
                                 print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
                                 print('Por favor, tente novamente mais tarde.')
                             else:
-                                with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_leitura_filmes:
-                                    dados_filmes_json = json.load(arquivo_leitura_filmes)
-                                    for filme in dados_filmes_json:
-                                        if filme["nome"] == usuario_nome_do_filme:
-                                            filme["avaliacoes"].append(avaliacao_do_usuario_filme)
-                                            filme["nota"] = float(f'{sum(filme["avaliacoes"]) / len(filme["avaliacoes"]):.2f}')
-                                with open(caminho_filmes, 'w', encoding='utf-8') as arquivo_alteracao_filmes:
-                                    json.dump(dados_filmes_json, arquivo_alteracao_filmes, indent=4, ensure_ascii=False)
+                                for filme in Filme.catalogo_de_filmes:
+                                    if filme["nome"] == usuario_nome_do_filme:
+                                        filme["avaliacoes"].append(avaliacao_do_usuario_filme)
+                                        filme["nota"] = float(f'{sum(filme["avaliacoes"]) / len(filme["avaliacoes"]):.2f}')
+                                subir_dados_filmes(Filme.catalogo_de_filmes)
                                 print('Avaliação cadastrada com sucesso!')
                         except ValueError:
                             print('Erro! Verifique se o valor da avaliação é um número real')
@@ -204,14 +201,11 @@ while True:
                                 print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
                                 print('Por favor, tente novamente mais tarde.')
                             else:
-                                with open(caminho_series, 'r', encoding='utf-8') as arquivo_leitura_series:
-                                    dados_series_json = json.load(arquivo_leitura_series)
-                                    for serie in dados_series_json:
-                                        if serie["nome"] == usuario_nome_da_serie:
-                                            serie["avaliacoes"].append(avaliacao_do_usuario_serie)
-                                            serie["nota"] = float(f'{(sum(serie["avaliacoes"]) / len(serie["avaliacoes"]) / 2):.2f}')
-                                with open(caminho_series, 'w', encoding='utf-8') as arquivo_alteracao_series:
-                                    json.dump(dados_series_json, arquivo_alteracao_series, indent=4, ensure_ascii=False)
+                                for serie in Serie.catalogo_de_series:
+                                    if serie["nome"] == usuario_nome_da_serie:
+                                        serie["avaliacoes"].append(avaliacao_do_usuario_serie)
+                                        serie["nota"] = float(f'{(sum(serie["avaliacoes"]) / len(serie["avaliacoes"]) / 2):.2f}')
+                                subir_dados_series(Serie.catalogo_de_series)
                                 print('Avaliação cadastrada com sucesso!')
                         except ValueError:
                             print('Erro! Verifique se o valor da avaliação é um número real')
@@ -231,22 +225,19 @@ while True:
                                 print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
                                 print('Por favor, tente novamente mais tarde.')
                             else:
-                                with open(caminho_documentarios, 'r', encoding='utf-8') as arquivo_leitura_documentarios:
-                                    dados_documentarios_json = json.load(arquivo_leitura_documentarios)
-                                    for documentario in dados_documentarios_json:
-                                        if documentario["nome"] == usuario_nome_do_documentario:
-                                            documentario["avaliacoes"].append(avaliacao_do_usuario_documentario)
-                                            media_avaliacoes = float(f'{(sum(documentario["avaliacoes"]) / len(documentario["avaliacoes"])):.2f}')
-                                            if media_avaliacoes >= 9.0:
-                                                documentario["nota"] = 'É um dos documentários campeões do catálogo 🏅'
-                                            elif 7.5 <= media_avaliacoes < 9.0:
-                                                documentario["nota"] = 'É um documentário muito bem avaliado por quem já assistiu 🤩'
-                                            elif 6.0 <= media_avaliacoes < 7.5:
-                                                documentario["nota"] = 'É um documentário que agrada diferentes parcelas 🙂'
-                                            else:
-                                                documentario["nota"] = 'É um documentário que divide opiniões 😐'
-                                with open(caminho_documentarios, 'w', encoding='utf-8') as arquivo_alteracao_documentarios:
-                                    json.dump(dados_documentarios_json, arquivo_alteracao_documentarios, indent=4, ensure_ascii=False)
+                                for documentario in Documentario.catalogo_de_documentarios:
+                                    if documentario["nome"] == usuario_nome_do_documentario:
+                                        documentario["avaliacoes"].append(avaliacao_do_usuario_documentario)
+                                        media_avaliacoes = float(f'{(sum(documentario["avaliacoes"]) / len(documentario["avaliacoes"])):.2f}')
+                                        if media_avaliacoes >= 9.0:
+                                            documentario["nota"] = 'É um dos documentários campeões do catálogo 🏅'
+                                        elif 7.5 <= media_avaliacoes < 9.0:
+                                            documentario["nota"] = 'É um documentário muito bem avaliado por quem já assistiu 🤩'
+                                        elif 6.0 <= media_avaliacoes < 7.5:
+                                            documentario["nota"] = 'É um documentário que agrada diferentes parcelas 🙂'
+                                        else:
+                                            documentario["nota"] = 'É um documentário que divide opiniões 😐'
+                                subir_dados_documentario(Documentario.catalogo_de_documentarios)
                                 print('Avaliação cadastrada com sucesso!')
                         except ValueError:
                             print('Erro! Verifique se o valor da avaliação é um número real')
