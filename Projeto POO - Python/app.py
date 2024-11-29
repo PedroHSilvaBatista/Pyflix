@@ -10,7 +10,9 @@ from models.documentario import Documentario
 
 diretorio_atual = os.path.dirname(__file__)
 caminho_usuarios = os.path.join(diretorio_atual, 'data', 'usuarios.json')
-caminho_arquivo_filme = os.path.join(diretorio_atual, 'data', 'filmes.json')
+caminho_filmes = os.path.join(diretorio_atual, 'data', 'filmes.json')
+caminho_series = os.path.join(diretorio_atual, 'data', 'series.json')
+caminho_documentarios = os.path.join(diretorio_atual, 'data', 'documentarios.json')
 
 status_de_login = False
 
@@ -145,21 +147,19 @@ while True:
                             tema_documentario = input('Digite o tema a qual o documentário se trata: ')
                             nota_documentario = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir o documentário: '))
 
-                            if type(nota_documentario) == float or type(nota_documentario) == int:
-                                if nota_documentario < 0 or nota_documentario > 10:
-                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
-                                    print('Por favor, tente novamente mais tarde.')
-                                else:
-                                    Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario, categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario, nota_documentario)
-                                    subir_dados_documentario(Documentario.catalogo_de_documentarios)
-                                    print('Documentário recomendado com sucesso!')
+                            if nota_documentario < 0 or nota_documentario > 10:
+                                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                print('Por favor, tente novamente mais tarde.')
                             else:
-                                print('Erro. Por favor, digite um valor real para a atribuição da nota')
+                                Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario,categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario, nota_documentario)
+                                subir_dados_documentario(Documentario.catalogo_de_documentarios)
+                                print('Documentário recomendado com sucesso!')
                         except ValueError:
                             print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case _:
                     print('Por favor, digite uma opção válida')
         case '5':
+            # Alterar a nota de cada título para que o usuário também possa ver a alteração feita na nota
             print('Digite qual categoria que gostaria de avaliar')
             exibir_categorias()
             opcao_usuario_avaliar = input('Digite sua opção: ')
@@ -171,14 +171,88 @@ while True:
                     encontrar_filme_para_avaliar = encontrar_filme_no_catalogo(usuario_nome_do_filme)
 
                     if encontrar_filme_para_avaliar:
-                        pass
+                        try:
+                            avaliacao_do_usuario_filme = float(input(f'Indique aqui a nota que gostaria de atribuir ao filme "{usuario_nome_do_filme}": '))
+                            if avaliacao_do_usuario_filme < 0 or avaliacao_do_usuario_filme > 10:
+                                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                print('Por favor, tente novamente mais tarde.')
+                            else:
+                                with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_leitura_filmes:
+                                    dados_filmes_json = json.load(arquivo_leitura_filmes)
+                                    for filme in dados_filmes_json:
+                                        if filme["nome"] == usuario_nome_do_filme:
+                                            filme["avaliacoes"].append(avaliacao_do_usuario_filme)
+                                            filme["nota"] = float(f'{sum(filme["avaliacoes"]) / len(filme["avaliacoes"]):.2f}')
+                                with open(caminho_filmes, 'w', encoding='utf-8') as arquivo_alteracao_filmes:
+                                    json.dump(dados_filmes_json, arquivo_alteracao_filmes, indent=4, ensure_ascii=False)
+                                print('Avaliação cadastrada com sucesso!')
+                        except ValueError:
+                            print('Erro! Verifique se o valor da avaliação é um número real')
                     else:
                         print('O filme digitado não foi encontrado')
                         print('Por favor, verique se o nome do filme foi inserido corretamente')
                 case '2':
-                    pass
+                    print('Para que se possa avaliar uma série, é necessário primeiro digitar o nome da série a qual que se avaliar')
+
+                    usuario_nome_da_serie = input('Digite o nome da série aqui: ').title()
+                    encontrar_serie_para_avaliar = encontrar_serie_no_catalogo(usuario_nome_da_serie)
+
+                    if encontrar_serie_para_avaliar:
+                        try:
+                            avaliacao_do_usuario_serie = float(input(f'Indique aqui a nota que gostaria de atribuir ao filme "{usuario_nome_da_serie}": '))
+                            if avaliacao_do_usuario_serie < 0 or avaliacao_do_usuario_serie > 10:
+                                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                print('Por favor, tente novamente mais tarde.')
+                            else:
+                                with open(caminho_series, 'r', encoding='utf-8') as arquivo_leitura_series:
+                                    dados_series_json = json.load(arquivo_leitura_series)
+                                    for serie in dados_series_json:
+                                        if serie["nome"] == usuario_nome_da_serie:
+                                            serie["avaliacoes"].append(avaliacao_do_usuario_serie)
+                                            serie["nota"] = float(f'{(sum(serie["avaliacoes"]) / len(serie["avaliacoes"]) / 2):.2f}')
+                                with open(caminho_series, 'w', encoding='utf-8') as arquivo_alteracao_series:
+                                    json.dump(dados_series_json, arquivo_alteracao_series, indent=4, ensure_ascii=False)
+                                print('Avaliação cadastrada com sucesso!')
+                        except ValueError:
+                            print('Erro! Verifique se o valor da avaliação é um número real')
+                    else:
+                        print('A série digitada não foi encontrada')
+                        print('Por favor, verifique se o nome da série foi inserida corretamente')
                 case '3':
-                    pass
+                    print('Para que se possa avaliar um documentário, é necessário primeiro digitar o nome do documentário a qual se quer avaliar')
+
+                    usuario_nome_do_documentario = input('Digite o nome do documentário aqui: ').title()
+                    encontrar_documentario_para_avaliar = encontrar_documentario_no_catalogo(usuario_nome_do_documentario)
+
+                    if encontrar_documentario_para_avaliar:
+                        try:
+                            avaliacao_do_usuario_documentario = float(input(f'Indique aqui a nota que gostaria de atribuir ao documentário "{usuario_nome_do_documentario}": '))
+                            if avaliacao_do_usuario_documentario < 0 or avaliacao_do_usuario_documentario > 10:
+                                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                print('Por favor, tente novamente mais tarde.')
+                            else:
+                                with open(caminho_documentarios, 'r', encoding='utf-8') as arquivo_leitura_documentarios:
+                                    dados_documentarios_json = json.load(arquivo_leitura_documentarios)
+                                    for documentario in dados_documentarios_json:
+                                        if documentario["nome"] == usuario_nome_do_documentario:
+                                            documentario["avaliacoes"].append(avaliacao_do_usuario_documentario)
+                                            media_avaliacoes = float(f'{(sum(documentario["avaliacoes"]) / len(documentario["avaliacoes"])):.2f}')
+                                            if media_avaliacoes >= 9.0:
+                                                documentario["nota"] = 'É um dos documentários campeões do catálogo 🏅'
+                                            elif 7.5 <= media_avaliacoes < 9.0:
+                                                documentario["nota"] = 'É um documentário muito bem avaliado por quem já assistiu 🤩'
+                                            elif 6.0 <= media_avaliacoes < 7.5:
+                                                documentario["nota"] = 'É um documentário que agrada diferentes parcelas 🙂'
+                                            else:
+                                                documentario["nota"] = 'É um documentário que divide opiniões 😐'
+                                with open(caminho_documentarios, 'w', encoding='utf-8') as arquivo_alteracao_documentarios:
+                                    json.dump(dados_documentarios_json, arquivo_alteracao_documentarios, indent=4, ensure_ascii=False)
+                                print('Avaliação cadastrada com sucesso!')
+                        except ValueError:
+                            print('Erro! Verifique se o valor da avaliação é um número real')
+                    else:
+                        print('O documentário digitado não foi encontrado')
+                        print('Por favor, verifique se o nome do documentário foi inserido corretamente')
                 case _:
                     print('Por favor, digite uma opção válida')
         case '6':

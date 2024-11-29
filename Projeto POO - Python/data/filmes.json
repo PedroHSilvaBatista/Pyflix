@@ -1,19 +1,5 @@
 [
     {
-        "nome": "O Poderoso Chefão",
-        "ano_de_lancamento": 1972,
-        "tempo_de_duracao_em_minutos": 175,
-        "categorias": [
-            "Crime",
-            "Ação",
-            "Clássico"
-        ],
-        "sinopse": "Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.",
-        "diretor": "Francis Ford Coppola",
-        "estudio": "Paramount Pictures",
-        "nota": 9.75
-    },
-    {
         "nome": "Matrix",
         "ano_de_lancamento": 1999,
         "tempo_de_duracao_em_minutos": 136,
@@ -54,5 +40,23 @@
         "diretor": "Dennis Dugan",
         "estudio": "Relativity Media",
         "nota": "Nenhuma avaliação registrada no momento 😕"
+    },
+    {
+        "nome": "O Poderoso Chefão",
+        "ano_de_lancamento": 1972,
+        "tempo_de_duracao_em_minutos": 175,
+        "categorias": [
+            "Crime",
+            "Ação",
+            "Clássico"
+        ],
+        "sinopse": "Uma família mafiosa luta para estabelecer sua supremacia nos Estados Unidos depois da Segunda Guerra Mundial. Uma tentativa de assassinato deixa o chefão Vito Corleone incapacitado e força os filhos Michael e Sonny a assumir os negócios.",
+        "diretor": "Francis Ford Coppola",
+        "estudio": "Paramount Pictures",
+        "avaliacoes": [
+            9.75,
+            9.7
+        ],
+        "nota": 9.72
     }
 ]

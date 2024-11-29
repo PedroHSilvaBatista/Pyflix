@@ -1,15 +1,5 @@
 [
     {
-        "nome": "Brasil 2002",
-        "ano_de_lancamento": "2022",
-        "tempo_de_duracao_em_minutos": "92",
-        "categoria": "Documentário",
-        "sinopse": "O documentário mostra os bastidores da seleção brasileira que conquistou a Copa do Mundo de 2002, com imagens inéditas e entrevistas com os jogadores",
-        "autor": "Luis Ara",
-        "tema": "Futebol",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
         "nome": "Senna: O Brasileiro, O Herói, O Campeão",
         "ano_de_lancamento": "2010",
         "tempo_de_duracao_em_minutos": "105",
@@ -40,14 +30,17 @@
         "nota": "Nenhuma avaliação registrada no momento 😕"
     },
     {
-        "nome": "Sdhgsd",
-        "ano_de_lancamento": 12,
-        "tempo_de_duracao_em_minutos": 12,
-        "categoria": "sdjh",
-        "sinopse": "sdjh",
-        "autor": "sjhd",
-        "tema": "sjdh",
-        "avaliacoes": [],
-        "nota": "Nenhuma avaliação registrada no momento 😕"
+        "nome": "Brasil 2002",
+        "ano_de_lancamento": 2022,
+        "tempo_de_duracao_em_minutos": 92,
+        "categoria": "Documentário",
+        "sinopse": "O documentário mostra os bastidores da seleção brasileira que conquistou a Copa do Mundo de 2002, com imagens inéditas e entrevistas com os jogadores",
+        "autor": "Luis Ara",
+        "tema": "Futebol",
+        "avaliacoes": [
+            9.2,
+            8.7
+        ],
+        "nota": "É um documentário muito bem avaliado por quem já assistiu 🤩"
     }
 ]

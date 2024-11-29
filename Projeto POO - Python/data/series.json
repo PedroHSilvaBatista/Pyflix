@@ -1,19 +1,5 @@
 [
     {
-        "nome": "The Office",
-        "ano_de_lancamento": 2005,
-        "tempo_de_duracao_aproximado_em_minutos": 4560,
-        "categorias": [
-            "Comédia",
-            "Irreventes",
-            "Sitcom"
-        ],
-        "sinopse": "Esta adaptação americana se passa em uma empresa de papel em Scranton, Pensilvânia e tem um estilo de documentário semelhante ao original britânico estrelado por Ricky Gervais.",
-        "numero_de_temporadas": 9,
-        "numero_aproximado_de_episodios": 201,
-        "nota": "4.50"
-    },
-    {
         "nome": "Vikings",
         "ano_de_lancamento": 2013,
         "tempo_de_duracao_aproximado_em_minutos": 3916,
@@ -68,5 +54,23 @@
         "numero_de_temporadas": "5",
         "numero_aproximado_de_episodios": "62",
         "nota": "Nenhuma avaliação registrada no momento 😕"
+    },
+    {
+        "nome": "The Office",
+        "ano_de_lancamento": 2005,
+        "tempo_de_duracao_aproximado_em_minutos": 4560,
+        "categorias": [
+            "Comédia",
+            "Irreverentes",
+            "Sitcom"
+        ],
+        "sinopse": "Esta adaptação americana se passa em uma empresa de papel em Scranton, Pensilvânia e tem um estilo de documentário semelhante ao original britânico estrelado por Ricky Gervais.",
+        "numero_de_temporadas": 9,
+        "numero_aproximado_de_episodios": 201,
+        "avaliacoes": [
+            8.75,
+            9.0
+        ],
+        "nota": 4.44
     }
 ]
