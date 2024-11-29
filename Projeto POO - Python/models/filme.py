@@ -10,29 +10,38 @@ class Filme(Titulo):
 
     with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_leitura:
         dados_json = json.load(arquivo_leitura)
-    catalogo_de_filmes = [filme for filme in dados_json]
+    if dados_json:
+        catalogo_de_filmes = [filme for filme in dados_json]
+    else:
+        catalogo_de_filmes = []
 
-    def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, diretor, estudio):
+    def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, diretor, estudio, primeira_nota):
         super().__init__(nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse)
         self._diretor = diretor
         self._estudio = estudio
-        self._avaliacoes = []
+        self._avaliacoes = [primeira_nota]
         Filme.catalogo_de_filmes.append(self.serializar_objeto())
 
+    @property
+    def getclassificacao(self) -> float:
+        """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado"""
+        if self.getavaliacoes:
+            return float(f'{sum(self.getavaliacoes) / len(self.getavaliacoes):2f}')
+        print('Nenhuma avaliação registrada no momento 😕')
+    
     def __str__(self) -> str:
         """Esta função retorna uma representação em string do filme com algumas informações importantes"""
         return f'Nome: {self._nome} | Ano de Lançamento: {self._ano_de_lancamento}'
     
-    def avaliar(self, nota) -> None:
-        """Esta função atribui uma nota a lista de avaliações do objeto e não possui retorno"""
-        if type(nota) == float or type(nota) == int:
-            if nota < 0 or nota > 10:
-                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
-                print('Por favor, tente novamente mais tarde.')
-            else:
-                self._avaliacoes.append(nota)
+    @classmethod
+    def listar_catalogo_de_filmes(cls) -> None:
+        """Esta função lista todos os filmes já registrados e não possui retorno"""
+        if cls.catalogo_de_filmes:
+            print(f'{"Nome".ljust(25)} | {"Ano de Lançamento".ljust(25)} | {"Gênero Principal".ljust(25)}')
+            for filme in cls.catalogo_de_filmes:
+                print(f'{filme["nome"].ljust(25)} | {str(filme["ano_de_lancamento"]).ljust(25)} | {filme["categorias"][0].ljust(25)}')
         else:
-            print('Erro. Por favor, digite um valor real para a atribuição da nota')
+            print('Nenhum filme registrado até o momento 😕')
 
     @property
     def getnome(self):
@@ -63,41 +72,8 @@ class Filme(Titulo):
         return self._estudio
 
     @property
-    def getclassificacao(self) -> float:
-        """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado"""
-        if not self._avaliacoes:
-            return 'Nenhuma avaliação registrada no momento 😕'
-        return f'{sum(self._avaliacoes) / len(self._avaliacoes):2f}'
-
-    # Criar uma classmethod para listar todos os filmes do catálogo
-    @classmethod
-    def listar_catalogo_de_filmes(cls) -> None:
-        """Esta função lista todos os filmes já registrados e não possui retorno"""
-        with open(caminho_filmes, 'r', encoding='utf-8') as arquivo_ler_filmes:
-            dados_json = json.load(arquivo_ler_filmes)
-        print(f'{"Nome".ljust(25)} | {"Ano de Lançamento".ljust(25)} | {"Gênero Principal".ljust(25)}')
-        for filme in dados_json:
-            print(f'{filme["nome"].ljust(25)} | {str(filme["ano_de_lancamento"]).ljust(25)} | {filme["categorias"][0].ljust(25)}')
-
-    # Montar uma ficha técnica do filme, de modo a exibir todas as informações do filme
-    def exibir_ficha_tecnica(self) -> None:
-        """Esta função exibe a ficha técnica completa de um filme e não possui retorno"""
-        print('-=' * 35)
-        print(f'Filme: {self._nome}')
-        print(f'Ano: {self._ano_de_lancamento}')
-
-        print(f'Gênero: ', end='')
-        generos = self._categoria
-        for i in range(len(generos)):
-            if i == len(generos) - 1:
-                print(f'{generos[i]}', end='')
-            else:
-                print(f'{generos[i]} ● ', end='')
-
-        print(f'\nDiretor: {self._diretor}')
-        print(f'Stúdio: {self._estudio}')
-        print(f'Sinopse: {self._sinopse}')
-        print('-=' * 35)
+    def getavaliacoes(self):
+        return self._avaliacoes
     
     def serializar_objeto(self):
         return {
@@ -108,5 +84,6 @@ class Filme(Titulo):
             "sinopse": self.getsinopse,
             "diretor": self.getdiretor,
             "estudio": self.getestudio,
+            "avaliacoes": self.getavaliacoes,
             "nota": self.getclassificacao,
         }

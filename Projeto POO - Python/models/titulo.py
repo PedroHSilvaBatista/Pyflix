@@ -7,10 +7,6 @@ class Titulo():
         self._tempo_de_duracao = tempo_de_duracao
         self._categoria = categoria
         self._sinopse = sinopse
-
-    @abstractmethod
-    def avaliar(self, nota):
-        pass
     
     @abstractmethod
     def getclassificacao():

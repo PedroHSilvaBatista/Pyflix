@@ -5,40 +5,43 @@ import os, json
 diretorio_atual = os.path.dirname(__file__)
 caminho_documentarios = os.path.join(diretorio_atual, '..', 'data', 'documentarios.json')
 
-# Nota: Subir no banco de dados todos os documentários tudo de novo, pois os dados não possuem o atributo nota
+
 class Documentario(Titulo):
 
     with open(caminho_documentarios, 'r', encoding='utf-8') as arquivo_leitura:
         dados_json = json.load(arquivo_leitura)
-    catalogo_de_documentarios = [documentario for documentario in dados_json]
 
-    def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, autor, tema):
+    if dados_json:
+        catalogo_de_documentarios = [documentario for documentario in dados_json]
+    else:
+        catalogo_de_documentarios = []
+
+    def __init__(self, nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse, autor, tema, primeira_nota):
         super().__init__(nome, ano_de_lancamento, tempo_de_duracao, categoria, sinopse)
         self._autor = autor
         self._tema = tema
-        self._avaliacoes = []
+        self._avaliacoes = [primeira_nota]
         Documentario.catalogo_de_documentarios.append(self.serializar_objeto())
 
     def __str__(self) -> str:
         """Esta função retorna uma representação em string do documentário com algumas informações importantes"""
         return f'Nome: {self._nome} | Ano de Lançamento: {self._ano_de_lancamento} | Tema: {self._tema}'
-
-    def avaliar(self, nota:float) -> None:
-        """Esta função atribui uma nota a lista de avaliações do objeto e não possui retorno"""
-        if type(nota) == float or type(nota) == int:
-            if nota < 0 or nota > 10:
-                print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
-                print('Por favor, tente novamente mais tarde.')
-            else:
-                self._avaliacoes.append(nota)
+    
+    @classmethod
+    def listar_documentarios(cls) -> None:
+        """Esta função lista todos os documentários já registradas e não possui retorno"""
+        if cls.catalogo_de_documentarios:
+            print(f'{"Nome".ljust(25)} | {"Autor".ljust(25)} | {"Tema".ljust(25)} | {"Nota".ljust(25)}')
+            for documentario in cls.catalogo_de_documentarios:
+                print(f'{documentario["nome"].ljust(25)} | {documentario["autor"].ljust(25)} | {documentario["tema"].ljust(25)} | {documentario["nota"]}')
         else:
-            print('Erro. Por favor, digite um valor real para a atribuição da nota')
+            print('Nenhuma série registrada até o momento 😕')
     
     @property
-    def _getclassificacao(self) -> str:
+    def getclassificacao(self) -> str:
         """Esta função calcula a média de avaliações da lista de avaliações e retorna uma mensagem em forma de string
         com base na média obtida"""
-        if not self._avaliacoes:
+        if not self.getavaliacoes:
             return 'Nenhuma avaliação registrada no momento 😕'
         avaliacao_media = sum(self._avaliacoes) / len(self._avaliacoes)
         if avaliacao_media >= 9.0:
@@ -77,24 +80,10 @@ class Documentario(Titulo):
     @property
     def gettema(self):
         return self._tema
-
-    @classmethod
-    def listar_documentarios(cls) -> None:
-        """Esta função lista todos os documentários já registradas e não possui retorno"""
-        print(f'{"Nome".ljust(25)} | {"Autor".ljust(25)} | {"Tema".ljust(25)} | {"Nota".ljust(25)}')
-        for documentario in cls.catalogo_de_documentarios:
-            print(f'{documentario["nome"].ljust(25)} | {documentario["autor"].ljust(25)} | {documentario["tema"].ljust(25)} | {documentario["nota"]}')
     
-    def exibir_ficha_tecnica(self) -> None:
-        """Esta função exibe a ficha técnica completa de um documentário e não possui retorno"""
-        print('-=' * 35)
-        print(f'Documentário: {self._nome}')
-        print(f'Autor: {self._autor}')
-        print(f'Tema: {self._tema}')
-        print(f'Ano: {self._ano_de_lancamento}')
-        print(f'Gênero: {self._categoria}')
-        print(f'Sinopse: {self._sinopse}')
-        print('-=' * 35)
+    @property
+    def getavaliacoes(self):
+        return self._avaliacoes
 
     def serializar_objeto(self):
         return {
@@ -105,5 +94,6 @@ class Documentario(Titulo):
             "sinopse": self.getsinopse,
             "autor": self.getautor,
             "tema": self.gettema,
-            "nota": self._getclassificacao
+            "avaliacoes": self.getavaliacoes,
+            "nota": self.getclassificacao
         }

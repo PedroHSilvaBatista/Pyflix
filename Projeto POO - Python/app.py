@@ -72,12 +72,19 @@ while True:
                             sinopse_filme = input('Diga a sinopse do filme: ')
                             diretor_filme = input('Diga um dos diretores do filme: ')
                             estudio_filme = input('Diga o estúdio em que foi produzido o filme: ')
-                            Filme(nome_do_filme, ano_de_lancamento_filme, tempo_de_duracao_filme, generos_filme, sinopse_filme, diretor_filme, estudio_filme)
-                            subir_dados_filmes(Filme.catalogo_de_filmes)
-                            print('Filme recomendado com sucesso!')
+                            nota_filme = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir ao filme: '))
+                            
+                            if type(nota_filme) == float or type(nota_filme) == int:
+                                if nota_filme < 0 or nota_filme > 10:
+                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                    print('Por favor, tente novamente mais tarde.')
+                                else:
+                                    Filme(nome_do_filme, ano_de_lancamento_filme, tempo_de_duracao_filme, generos_filme, sinopse_filme, diretor_filme, estudio_filme, nota_filme)
+                                    subir_dados_filmes(Filme.catalogo_de_filmes)
+                                    print('Filme recomendado com sucesso!')
+                            else:
+                                print('Erro. Por favor, digite um valor real para a atribuição da nota')
                         except ValueError:
-                            print('Erro, o valor informado não é um valor inteiro')
-                        except Exception as mensagem_erro_geral:
                             print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case '2':
                     print('Para que a adição de uma série seja efetuada, é necessário informar alguns dados antes')
@@ -92,8 +99,6 @@ while True:
                         try:
                             ano_de_lancamento_serie = int(input('Digite o ano em que a série foi lançada: '))
                             tempo_de_duracao_serie = int(input('Digite o tempo de duração total da série (pode ser um valor estimado): '))
-                            numero_de_temporadas_serie = int(input('Diga quantas temporadas a série possui: '))
-                            numero_de_episodios_serie = int(input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): '))
                             print('Digite três categorias que mais combinam com a série selecionada')
                             generos_serie = []
                             for c in range(3):
@@ -105,12 +110,21 @@ while True:
                                     generos_serie.append(input('Digite a última categoria da série: '))
                             
                             sinopse_serie = input('Diga a sinopse da série: ')
-                            Serie(nome_da_serie, ano_de_lancamento_serie, tempo_de_duracao_serie, generos_serie, sinopse_serie, numero_de_temporadas_serie, numero_de_episodios_serie)
-                            subir_dados_series(Serie.catalogo_de_series)
-                            print('Série recomendada com sucesso!')
+                            numero_de_temporadas_serie = int(input('Diga quantas temporadas a série possui: '))
+                            numero_de_episodios_serie = int(input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): '))
+                            nota_serie = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir a série: '))
+
+                            if type(nota_serie) == float or type(nota_serie) == int:
+                                if nota_serie < 0 or nota_serie > 10:
+                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                    print('Por favor, tente novamente mais tarde.')
+                                else:
+                                    Serie(nome_da_serie, ano_de_lancamento_serie, tempo_de_duracao_serie, generos_serie, sinopse_serie,numero_de_temporadas_serie, numero_de_episodios_serie, nota_serie)
+                                    subir_dados_series(Serie.catalogo_de_series)
+                                    print('Série recomendada com sucesso!')
+                            else:
+                                print('Erro. Por favor, digite um valor real para a atribuição da nota')
                         except ValueError:
-                            print('Erro, o valor informado não é um valor inteiro')
-                        except Exception as mensagem_erro_geral:
                             print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case '3':
                     print('Para que a adição de um documentário seja efetuada, é necessário informar alguns dados antes')
@@ -129,12 +143,19 @@ while True:
                             sinopse_documentario = input('Diga a sinpose do documentário: ')
                             autor_documentario = input('Digite o autor, roteirista ou produtor do documentário: ')
                             tema_documentario = input('Digite o tema a qual o documentário se trata: ')
-                            Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario, categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario)
-                            subir_dados_documentario(Documentario.catalogo_de_documentarios)
-                            print('Documentário recomendado com sucesso!')
+                            nota_documentario = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir o documentário: '))
+
+                            if type(nota_documentario) == float or type(nota_documentario) == int:
+                                if nota_documentario < 0 or nota_documentario > 10:
+                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                    print('Por favor, tente novamente mais tarde.')
+                                else:
+                                    Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario, categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario, nota_documentario)
+                                    subir_dados_documentario(Documentario.catalogo_de_documentarios)
+                                    print('Documentário recomendado com sucesso!')
+                            else:
+                                print('Erro. Por favor, digite um valor real para a atribuição da nota')
                         except ValueError:
-                            print('Erro, o valor informado não é um valor inteiro')
-                        except Exception as mensagem_erro_geral:
                             print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                 case _:
                     print('Por favor, digite uma opção válida')

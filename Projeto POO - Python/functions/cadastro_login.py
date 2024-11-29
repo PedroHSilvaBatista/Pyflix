@@ -52,7 +52,7 @@ def cadastro(dicionario_contas: dict) -> None:
     
     dicionario_contas[nome_de_usuario]["telefone"] = []
     usuario_telefone = input('Digite seu número de telefone: ')
-    # Corrigir a formatação do celular
+
     while len(usuario_telefone) != 11:
         print('Por favor, insira um número de telefone válido. Números de telefoneia móvel celular possuem 11 digitos')
         usuario_telefone = input('Digite seu número de telefone: ')
