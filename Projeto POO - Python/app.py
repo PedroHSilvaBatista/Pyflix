@@ -14,6 +14,7 @@ caminho_filmes = os.path.join(diretorio_atual, 'data', 'filmes.json')
 caminho_series = os.path.join(diretorio_atual, 'data', 'series.json')
 caminho_documentarios = os.path.join(diretorio_atual, 'data', 'documentarios.json')
 
+
 def app():
     status_de_login = False
 

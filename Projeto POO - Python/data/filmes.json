@@ -1,47 +1,5 @@
 [
     {
-        "nome": "Matrix",
-        "ano_de_lancamento": 1999,
-        "tempo_de_duracao_em_minutos": 136,
-        "categorias": [
-            "Ação",
-            "Sci-Fi",
-            "Cyberpunk"
-        ],
-        "sinopse": "Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel na guerra contra seus controladores.",
-        "diretor": "Lana Wachowski",
-        "estudio": "Warner Bros. Entertainment",
-        "nota": 9.0
-    },
-    {
-        "nome": "Oppenheimer",
-        "ano_de_lancamento": 2023,
-        "tempo_de_duracao_em_minutos": 180,
-        "categorias": [
-            "Drama",
-            "History",
-            "Biografia"
-        ],
-        "sinopse": "A história do cientista americano J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica.",
-        "diretor": "Christopher Nolan",
-        "estudio": "Universal Studios",
-        "nota": 8.6
-    },
-    {
-        "nome": "Gente Grande",
-        "ano_de_lancamento": "2010",
-        "tempo_de_duracao_em_minutos": "102",
-        "categorias": [
-            "Comédia",
-            "Drama",
-            "Buddy"
-        ],
-        "sinopse": "A morte do treinador de basquete de infância de velhos amigos reúne a turma no mesmo lugar que celebraram um campeonato anos atrás. Os amigos, acompanhados de suas esposas e filhos, descobrem que idade não significa o mesmo que maturidade.",
-        "diretor": "Dennis Dugan",
-        "estudio": "Relativity Media",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
         "nome": "O Poderoso Chefão",
         "ano_de_lancamento": 1972,
         "tempo_de_duracao_em_minutos": 175,
@@ -59,5 +17,73 @@
             9.5
         ],
         "nota": 9.65
+    },
+    {
+        "nome": "Matrix",
+        "ano_de_lancamento": 1999,
+        "tempo_de_duracao_em_minutos": 136,
+        "categorias": [
+            "Ação",
+            "Sci-Fi",
+            "Cyberpunk"
+        ],
+        "sinopse": "Um hacker aprende com os misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel na guerra contra seus controladores.",
+        "diretor": "Lana Wachowski",
+        "estudio": "Warner Bros. Entertainment",
+        "avaliacoes": [
+            9.0
+        ],
+        "nota": 9.0
+    },
+    {
+        "nome": "Oppenheimer",
+        "ano_de_lancamento": 2023,
+        "tempo_de_duracao_em_minutos": 180,
+        "categorias": [
+            "Drama",
+            "História",
+            "Biografia"
+        ],
+        "sinopse": "A história do cientista americano J. Robert Oppenheimer e seu papel no desenvolvimento da bomba atômica.",
+        "diretor": "Christopher Nolan",
+        "estudio": "Universal Studios",
+        "avaliacoes": [
+            8.6
+        ],
+        "nota": 8.6
+    },
+    {
+        "nome": "Gente Grande",
+        "ano_de_lancamento": 2010,
+        "tempo_de_duracao_em_minutos": 102,
+        "categorias": [
+            "Comédia",
+            "Drama",
+            "Buddy"
+        ],
+        "sinopse": "A morte do treinador de basquete de infância de velhos amigos reúne a turma no mesmo lugar que celebraram um campeonato anos atrás. Os amigos, acompanhados de suas esposas e filhos, descobrem que idade não significa o mesmo que maturidade.",
+        "diretor": "Dennis Dugan",
+        "estudio": "Relativity Media",
+        "avaliacoes": [
+            7.5
+        ],
+        "nota": 7.5
+    },
+    {
+        "nome": "Homem-Aranha",
+        "ano_de_lancamento": 2002,
+        "tempo_de_duracao_em_minutos": 121,
+        "categorias": [
+            "Super-Herói",
+            "Ficção Científica",
+            "Ação"
+        ],
+        "sinopse": "Depois de ser picado por uma aranha geneticamente modificada em uma demonstração científica, o jovem nerd Peter Parker ganha superpoderes.",
+        "diretor": "Sam Raimi",
+        "estudio": "Columbia Pictures",
+        "avaliacoes": [
+            8.0
+        ],
+        "nota": 8.0
     }
 ]

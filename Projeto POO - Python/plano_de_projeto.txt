@@ -9,7 +9,7 @@ Criar um sistema de Filmes, de modo a aplicar o paradigma de Programação Orien
 
 Bibliotecas e dependências uitilizadas:
     - Requests (Fazer requisições HTTP)
-    - FastAPI (Criação de desenvolvimento de API's)
+    - FastAPI (Criação e desenvolvimento de API's)
     - Uvicorn (Subir um servidor)
 
 

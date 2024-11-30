@@ -1,35 +1,5 @@
 [
     {
-        "nome": "Senna: O Brasileiro, O Herói, O Campeão",
-        "ano_de_lancamento": "2010",
-        "tempo_de_duracao_em_minutos": "105",
-        "categoria": "Documentário",
-        "sinopse": "Um documentário sobre o maior piloto brasileiro de Fórmula 1, Ayrton Senna, que ganhou o campeonato mundial três vezes antes de morrer tragicamente aos 34 anos de idade.",
-        "autor": "Manish Pandey",
-        "tema": "Automobilismo",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
-        "nome": "Privacidade Hackeada",
-        "ano_de_lancamento": "2019",
-        "tempo_de_duracao_em_minutos": "114",
-        "categoria": "Documentário",
-        "sinopse": "Entenda como a empresa de análise de dados Cambridge Analytica se tornou o símbolo do lado sombrio das redes sociais após a eleição presidencial de 2016 nos EUA",
-        "autor": "Jehane Noujaim",
-        "tema": "Internet",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
-        "nome": "Professor Polvo",
-        "ano_de_lancamento": "2020",
-        "tempo_de_duracao_em_minutos": "90",
-        "categoria": "Documentário",
-        "sinopse": "Em uma floresta subaquática na África do Sul, um cineasta desenvolve uma amizade improvável com um polvo e descobre mais sobre os mistérios do mundo submarino.",
-        "autor": "Pippa Ehrlich",
-        "tema": "Natureza",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
         "nome": "Brasil 2002",
         "ano_de_lancamento": 2022,
         "tempo_de_duracao_em_minutos": 92,
@@ -41,6 +11,58 @@
             9.2,
             8.7,
             8.7
+        ],
+        "nota": "É um documentário muito bem avaliado por quem já assistiu 🤩"
+    },
+    {
+        "nome": "O Dilema Das Redes",
+        "ano_de_lancamento": 2020,
+        "tempo_de_duracao_em_minutos": 94,
+        "categoria": "Docudrama",
+        "sinopse": "Especialistas em tecnologia do Vale do Silício soam o alarme do perigoso impacto das redes sociais na democracia e na humanidade como um todo.",
+        "autor": "Jeff Orlowski",
+        "tema": "Redes Sociais",
+        "avaliacoes": [
+            9.3
+        ],
+        "nota": "É um dos documentários campeões do catálogo 🏅"
+    },
+    {
+        "nome": "Privacidade Hackeada",
+        "ano_de_lancamento": 2019,
+        "tempo_de_duracao_em_minutos": 114,
+        "categoria": "Documentário",
+        "sinopse": "Entenda como a empresa de análise de dados Cambridge Analytica se tornou o símbolo do lado sombrio das redes sociais após a eleição presidencial de 2016 nos EUA",
+        "autor": "Jehane Noujaim",
+        "tema": "Internet",
+        "avaliacoes": [
+            7.8
+        ],
+        "nota": "É um documentário muito bem avaliado por quem já assistiu 🤩"
+    },
+    {
+        "nome": "Professor Polvo",
+        "ano_de_lancamento": 2020,
+        "tempo_de_duracao_em_minutos": 90,
+        "categoria": "Documentário",
+        "sinopse": "Em uma floresta subaquática na África do Sul, um cineasta desenvolve uma amizade improvável com um polvo e descobre mais sobre os mistérios do mundo submarino.",
+        "autor": "Pippa Ehrlich",
+        "tema": "Natureza",
+        "avaliacoes": [
+            9.4
+        ],
+        "nota": "É um dos documentários campeões do catálogo 🏅"
+    },
+    {
+        "nome": "Backyard Wilderness",
+        "ano_de_lancamento": 2018,
+        "tempo_de_duracao_em_minutos": 45,
+        "categoria": "Documentário",
+        "sinopse": "Uma criança descobre as maravilhas da natureza, explorando os animais e plantas na floresta ao redor de sua casa em Nova York.",
+        "autor": "Susan Todd",
+        "tema": "Natureza",
+        "avaliacoes": [
+            8.0
         ],
         "nota": "É um documentário muito bem avaliado por quem já assistiu 🤩"
     }

@@ -1,61 +1,5 @@
 [
     {
-        "nome": "Vikings",
-        "ano_de_lancamento": 2013,
-        "tempo_de_duracao_aproximado_em_minutos": 3916,
-        "categorias": [
-            "História",
-            "Ação",
-            "Drama"
-        ],
-        "sinopse": "A série acompanha a saga dos navegadores nórdicos que exploram - e conquistam - novos territórios nos tempos medievais.",
-        "numero_de_temporadas": 6,
-        "numero_aproximado_de_episodios": 89,
-        "nota": "4.25"
-    },
-    {
-        "nome": "Brooklyn Nine-Nine",
-        "ano_de_lancamento": 2013,
-        "tempo_de_duracao_aproximado_em_minutos": 3366,
-        "categorias": [
-            "Comédia",
-            "Sitcom",
-            "Policial"
-        ],
-        "sinopse": "Jake Peralta é um detetive brilhante e ao mesmo tempo imaturo, que nunca precisou se preocupar em respeitar as regras. Tudo muda quando um capitão exigente assume o comando de seu esquadrão e Jake deve aprender a trabalhar em equipe.",
-        "numero_de_temporadas": 8,
-        "numero_aproximado_de_episodios": 153,
-        "nota": "4.23"
-    },
-    {
-        "nome": "La Casa de Papel",
-        "ano_de_lancamento": "2017",
-        "tempo_de_duracao_aproximado_em_minutos": "2050",
-        "categorias": [
-            "Assalto",
-            "Drama",
-            "Suspense"
-        ],
-        "sinopse": "Oito ladrões se trancam com reféns na Casa da Moeda da Espanha. Seu líder manipula a polícia para realizar um plano que pode ser o maior roubo da história ou uma missão em vão.",
-        "numero_de_temporadas": "5",
-        "numero_aproximado_de_episodios": "41",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
-        "nome": "Breaking Bad",
-        "ano_de_lancamento": "2008",
-        "tempo_de_duracao_aproximado_em_minutos": "3162",
-        "categorias": [
-            "Drama",
-            "Policial",
-            "Suspense"
-        ],
-        "sinopse": "O professor de química Walter White não acredita que sua vida possa piorar ainda mais. Quando descobre que tem câncer terminal, Walter decide arriscar tudo para ganhar dinheiro enquanto pode, transformando sua van em um laboratório de metanfetamina.",
-        "numero_de_temporadas": "5",
-        "numero_aproximado_de_episodios": "62",
-        "nota": "Nenhuma avaliação registrada no momento 😕"
-    },
-    {
         "nome": "The Office",
         "ano_de_lancamento": 2005,
         "tempo_de_duracao_aproximado_em_minutos": 4560,
@@ -73,5 +17,73 @@
             8.7
         ],
         "nota": 4.41
+    },
+    {
+        "nome": "Vikings",
+        "ano_de_lancamento": 2013,
+        "tempo_de_duracao_aproximado_em_minutos": 3916,
+        "categorias": [
+            "História",
+            "Ação",
+            "Drama"
+        ],
+        "sinopse": "A série acompanha a saga dos navegadores nórdicos que exploram - e conquistam - novos territórios nos tempos medievais.",
+        "numero_de_temporadas": 6,
+        "numero_aproximado_de_episodios": 89,
+        "avaliacoes": [
+            8.5
+        ],
+        "nota": 4.25
+    },
+    {
+        "nome": "Brooklyn Nine-Nine",
+        "ano_de_lancamento": 2013,
+        "tempo_de_duracao_aproximado_em_minutos": 3366,
+        "categorias": [
+            "Comédia",
+            "Sitcom",
+            "Policial"
+        ],
+        "sinopse": "Jake Peralta é um detetive brilhante e ao mesmo tempo imaturo, que nunca precisou se preocupar em respeitar as regras. Tudo muda quando um capitão exigente assume o comando de seu esquadrão e Jake deve aprender a trabalhar em equipe.",
+        "numero_de_temporadas": 8,
+        "numero_aproximado_de_episodios": 153,
+        "avaliacoes": [
+            8.7
+        ],
+        "nota": 4.35
+    },
+    {
+        "nome": "La Casa De Papel",
+        "ano_de_lancamento": 2017,
+        "tempo_de_duracao_aproximado_em_minutos": 2050,
+        "categorias": [
+            "Assalto",
+            "Drama",
+            "Suspense"
+        ],
+        "sinopse": "Oito ladrões se trancam com reféns na Casa da Moeda da Espanha. Seu líder manipula a polícia para realizar um plano que pode ser o maior roubo da história ou uma missão em vão.",
+        "numero_de_temporadas": 5,
+        "numero_aproximado_de_episodios": 41,
+        "avaliacoes": [
+            8.1
+        ],
+        "nota": 4.05
+    },
+    {
+        "nome": "Breaking Bad",
+        "ano_de_lancamento": 2008,
+        "tempo_de_duracao_aproximado_em_minutos": 3162,
+        "categorias": [
+            "Drama",
+            "Policial",
+            "Suspense"
+        ],
+        "sinopse": "O professor de química Walter White não acredita que sua vida possa piorar ainda mais. Quando descobre que tem câncer terminal, Walter decide arriscar tudo para ganhar dinheiro enquanto pode, transformando sua van em um laboratório de metanfetamina.",
+        "numero_de_temporadas": 5,
+        "numero_aproximado_de_episodios": 62,
+        "avaliacoes": [
+            9.75
+        ],
+        "nota": 4.88
     }
 ]
