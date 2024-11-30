@@ -12,6 +12,11 @@
             "cep": "01001-000",
             "logradouro": "Praça da Sé",
             "uf": "SP"
+        },
+        "lista_de_desejos": {
+            "O Poderoso Chefão": 175,
+            "The Office": 4560,
+            "Brasil 2002": 92
         }
     }
 }

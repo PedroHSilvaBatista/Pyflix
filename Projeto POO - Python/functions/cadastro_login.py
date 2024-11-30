@@ -80,9 +80,10 @@ def cadastro(dicionario_contas: dict) -> None:
         except Exception:
             print(f'Não foi possível encontrar o CEP informado. Verifique se o endereço informado é válido')
 
+    dicionario_contas[nome_de_usuario]["lista_de_desejos"] = {}
 
     # Estrutura para subir os dados para o banco de dados
-    with open(caminho_usuario, 'a', encoding='utf-8') as arquivo:
+    with open(caminho_usuario, 'w', encoding='utf-8') as arquivo:
         json.dump(dicionario_contas, arquivo, indent=4, ensure_ascii=False)
 
     
@@ -102,7 +103,7 @@ def login(status_login: bool) -> bool:
         if senha_usuario == dados[nome_de_usuario]["senha"]:
             print('Login realizado com sucesso!')
             print(f'Seja bem-vindo, {dados[nome_de_usuario]["nome_completo"]}!')
-            return not status_login
+            return not status_login, nome_de_usuario
         tentativas -= 1
         print(f'Senha incorreta. Tentativas restantes: {tentativas}')
     print('Você excedeu o número de tentativas permitidas')
