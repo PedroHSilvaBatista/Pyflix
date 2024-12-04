@@ -9,8 +9,10 @@ caminho_usuario = os.path.join(diretorio_atual, '..', 'data', 'usuarios.json')
 
 
 def cadastro(dicionario_contas: dict) -> None:
+    """Esta função cadastra um usuário, sobe os dados criados ao banco de dados e não possui retorno"""
     print('Área de cadastro')
 
+    # Estrutura que verifica se o nome de usuário digitado já existe
     nome_de_usuario = input('Digite seu nome de usuário: ')
     while nome_de_usuario in dicionario_contas:
         print(f'O nome {nome_de_usuario} já existe. Por favor, escolha outro nome de usuário')
@@ -18,9 +20,9 @@ def cadastro(dicionario_contas: dict) -> None:
 
     dicionario_contas[nome_de_usuario] = {}
     
+    # Estrutura que armazena os dados digitados pelo usuário
     dicionario_contas[nome_de_usuario]["nome_completo"] = input('Digite seu nome completo: ')
     dicionario_contas[nome_de_usuario]["email"] = []
-
     usuario_email = input('Digite seu email: ')
     while True:
         if not ("@" in usuario_email and "." in usuario_email):
@@ -49,17 +51,15 @@ def cadastro(dicionario_contas: dict) -> None:
             dicionario_contas[nome_de_usuario]["senha"] = input('Digite sua senha: ')
         else:
             break
-    
     dicionario_contas[nome_de_usuario]["telefone"] = []
     usuario_telefone = input('Digite seu número de telefone: ')
-
     while len(usuario_telefone) != 11:
         print('Por favor, insira um número de telefone válido. Números de telefoneia móvel celular possuem 11 digitos')
         usuario_telefone = input('Digite seu número de telefone: ')
     formatacao_telefone = f'({usuario_telefone[:2]})' + " " + f'{usuario_telefone[2:7]}' + '-' + f'{usuario_telefone[7:]}'
     dicionario_contas[nome_de_usuario]["telefone"].append(formatacao_telefone)
 
-
+    # Estrutura utilizada para armazenar o endereço do usuário por meio de uma API
     dicionario_contas[nome_de_usuario]["localizacao"] = {}
     while True:
         try:
@@ -81,26 +81,27 @@ def cadastro(dicionario_contas: dict) -> None:
             print(f'Não foi possível encontrar o CEP informado. Verifique se o endereço informado é válido')
 
     dicionario_contas[nome_de_usuario]["lista_de_desejos"] = {}
-
-    # Estrutura para subir os dados para o banco de dados
+    # Estrutura que sobe os dados informados pelo usuário ao banco de dados
     with open(caminho_usuario, 'w', encoding='utf-8') as arquivo:
         json.dump(dicionario_contas, arquivo, indent=4, ensure_ascii=False)
 
     
 def login(status_login: bool) -> bool:
+    """Esta função serve para logar um usuário que possui uma conta já cadastrada no sistema,
+    caso o nome de usuário e senha estejam corretos a função
+    retorna o nome do usuário logado e o status de login como True,
+    caso o usuário exceda o número de tentativas, a função retorna o status de login como False"""
+    # Estrutura que carrega os dados do banco de dados e armazena em uma variável
     with open(caminho_usuario, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
-    nome_de_usuario = input('Digite seu nome de usuário: ')
-    while nome_de_usuario not in dados:
-        print('Por favor, digite um nome de usuário válido')
-        nome_de_usuario = input('Digite seu nome de usuário: ')
-
-    print('AVISO: Você terá 3 tentativas para acertar sua senha')
+    # Estrutura que monitora as tentativas para login do usuário
+    print('AVISO: Você terá 3 tentativas para acertar seu login')
     tentativas = 3
     while tentativas > 0:
+        nome_de_usuario = input('Digite seu nome de usuário: ')
         senha_usuario = input('Digite sua senha: ')
-        if senha_usuario == dados[nome_de_usuario]["senha"]:
+        if nome_de_usuario in dados and senha_usuario == dados[nome_de_usuario]["senha"]:
             print('Login realizado com sucesso!')
             print(f'Seja bem-vindo, {dados[nome_de_usuario]["nome_completo"]}!')
             return not status_login, nome_de_usuario

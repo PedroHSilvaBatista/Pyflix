@@ -38,53 +38,54 @@ class Serie(Titulo):
             print('Nenhuma série registrada até o momento 😕')
     
     @property
-    def getclassificacao(self) -> str:
+    def get_classificacao(self) -> str:
         """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado em forma de string"""
-        if self.getavaliacoes:
-            return float(f'{(sum(self._avaliacoes) / len(self._avaliacoes) / 2):.2f}')
+        if self.get_avaliacoes:
+            return float(f'{(sum(self.get_avaliacoes) / len(self.get_avaliacoes) / 2):.2f}')
         return 'Nenhuma avaliação registrada no momento 😕'
     
     @property
-    def getnome(self):
+    def get_nome(self):
         return self._nome
     
     @property
-    def getanodelancamento(self):
+    def get_anodelancamento(self):
         return self._ano_de_lancamento
     
     @property
-    def gettempodeduracao(self):
+    def get_tempodeduracao(self):
         return self._tempo_de_duracao
     
     @property
-    def getcategoria(self):
+    def get_categoria(self):
         return self._categoria
     
     @property
-    def getsinopse(self):
+    def get_sinopse(self):
         return self._sinopse
     
     @property
-    def getnumerodetemporadas(self):
+    def get_numerodetemporadas(self):
         return self._numero_de_temporadas
     
     @property
-    def getnumerodeepisodios(self):
+    def get_numerodeepisodios(self):
         return self._numero_de_episodios
     
     @property
-    def getavaliacoes(self):
+    def get_avaliacoes(self):
         return self._avaliacoes
     
     def serializar_objeto(self):
+        """Esta função serializa um objeto e retorna um dicionário que contém as informações de cada atributo"""
         return {
-            "nome": self.getnome,
-            "ano_de_lancamento": self.getanodelancamento,
-            "tempo_de_duracao_aproximado_em_minutos": self.gettempodeduracao,
-            "categorias": self.getcategoria,
-            "sinopse": self.getsinopse,
-            "numero_de_temporadas": self.getnumerodetemporadas,
-            "numero_aproximado_de_episodios": self.getnumerodeepisodios,
-            "avaliacoes": self.getavaliacoes,
-            "nota": self.getclassificacao,
+            "nome": self.get_nome,
+            "ano_de_lancamento": self.get_anodelancamento,
+            "tempo_de_duracao_aproximado_em_minutos": self.get_tempodeduracao,
+            "categorias": self.get_categoria,
+            "sinopse": self.get_sinopse,
+            "numero_de_temporadas": self.get_numerodetemporadas,
+            "numero_aproximado_de_episodios": self.get_numerodeepisodios,
+            "avaliacoes": self.get_avaliacoes,
+            "nota": self.get_classificacao,
         }

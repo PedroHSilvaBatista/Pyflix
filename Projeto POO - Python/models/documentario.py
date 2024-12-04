@@ -38,12 +38,12 @@ class Documentario(Titulo):
             print('Nenhuma série registrada até o momento 😕')
     
     @property
-    def getclassificacao(self) -> str:
+    def get_classificacao(self) -> str:
         """Esta função calcula a média de avaliações da lista de avaliações e retorna uma mensagem em forma de string
         com base na média obtida"""
-        if not self.getavaliacoes:
+        if not self.get_avaliacoes:
             return 'Nenhuma avaliação registrada no momento 😕'
-        avaliacao_media = sum(self._avaliacoes) / len(self._avaliacoes)
+        avaliacao_media = sum(self.get_avaliacoes) / len(self.get_avaliacoes)
         if avaliacao_media >= 9.0:
             return 'É um dos documentários campeões do catálogo 🏅'
         elif 7.5 <= avaliacao_media < 9.0:
@@ -54,46 +54,47 @@ class Documentario(Titulo):
             return 'É um documentário que divide opiniões 😐'
 
     @property
-    def getnome(self):
+    def get_nome(self):
         return self._nome
     
     @property
-    def getanodelancamento(self):
+    def get_anodelancamento(self):
         return self._ano_de_lancamento
     
     @property
-    def gettempodeduracao(self):
+    def get_tempodeduracao(self):
         return self._tempo_de_duracao
     
     @property
-    def getcategoria(self):
+    def get_categoria(self):
         return self._categoria
     
     @property
-    def getsinopse(self):
+    def get_sinopse(self):
         return self._sinopse
     
     @property
-    def getautor(self):
+    def get_autor(self):
         return self._autor
     
     @property
-    def gettema(self):
+    def get_tema(self):
         return self._tema
     
     @property
-    def getavaliacoes(self):
+    def get_avaliacoes(self):
         return self._avaliacoes
 
     def serializar_objeto(self):
+        """Esta função serializa um objeto e retorna um dicionário que contém as informações de cada atributo"""
         return {
-            "nome": self.getnome,
-            "ano_de_lancamento": self.getanodelancamento,
-            "tempo_de_duracao_em_minutos": self.gettempodeduracao,
-            "categoria": self.getcategoria,
-            "sinopse": self.getsinopse,
-            "autor": self.getautor,
-            "tema": self.gettema,
-            "avaliacoes": self.getavaliacoes,
-            "nota": self.getclassificacao
+            "nome": self.get_nome,
+            "ano_de_lancamento": self.get_anodelancamento,
+            "tempo_de_duracao_em_minutos": self.get_tempodeduracao,
+            "categoria": self.get_categoria,
+            "sinopse": self.get_sinopse,
+            "autor": self.get_autor,
+            "tema": self.get_tema,
+            "avaliacoes": self.get_avaliacoes,
+            "nota": self.get_classificacao
         }

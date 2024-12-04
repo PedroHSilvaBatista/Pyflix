@@ -1,4 +1,5 @@
 def menu() -> None:
+    """Esta função exibe o menu principal do programa e não possui retorno"""
     menu = '''
     - 1: Cadastro
     - 2: Login
@@ -14,6 +15,7 @@ def menu() -> None:
 
 
 def exibir_categorias() -> None:
+    """Esta função exibe o menu de categorias e não possui retorno"""
     categorias = '''
     1 - Filme
     2 - Série

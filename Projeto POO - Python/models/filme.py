@@ -23,10 +23,10 @@ class Filme(Titulo):
         Filme.catalogo_de_filmes.append(self.serializar_objeto())
 
     @property
-    def getclassificacao(self) -> float:
+    def get_classificacao(self) -> float:
         """Esta função calcula a média de avaliações da lista de avaliações e retorna o resultado"""
-        if self.getavaliacoes:
-            return float(f'{sum(self.getavaliacoes) / len(self.getavaliacoes):2f}')
+        if self.get_avaliacoes:
+            return float(f'{sum(self.get_avaliacoes) / len(self.get_avaliacoes):2f}')
         print('Nenhuma avaliação registrada no momento 😕')
     
     def __str__(self) -> str:
@@ -44,46 +44,47 @@ class Filme(Titulo):
             print('Nenhum filme registrado até o momento 😕')
 
     @property
-    def getnome(self):
+    def get_nome(self):
         return self._nome
     
     @property
-    def getanodelancamento(self):
+    def get_anodelancamento(self):
         return self._ano_de_lancamento
     
     @property
-    def gettempodeduracao(self):
+    def get_tempodeduracao(self):
         return self._tempo_de_duracao
 
     @property
-    def getcategoria(self):
+    def get_categoria(self):
         return self._categoria
     
     @property
-    def getsinopse(self):
+    def get_sinopse(self):
         return self._sinopse
     
     @property
-    def getdiretor(self):
+    def get_diretor(self):
         return self._diretor
     
     @property
-    def getestudio(self):
+    def get_estudio(self):
         return self._estudio
 
     @property
-    def getavaliacoes(self):
+    def get_avaliacoes(self):
         return self._avaliacoes
     
     def serializar_objeto(self):
+        """Esta função serializa um objeto e retorna um dicionário que contém as informações de cada atributo"""
         return {
-            "nome": self.getnome,
-            "ano_de_lancamento": self.getanodelancamento,
-            "tempo_de_duracao_em_minutos": self.gettempodeduracao,
-            "categorias": self.getcategoria,
-            "sinopse": self.getsinopse,
-            "diretor": self.getdiretor,
-            "estudio": self.getestudio,
-            "avaliacoes": self.getavaliacoes,
-            "nota": self.getclassificacao,
+            "nome": self.get_nome,
+            "ano_de_lancamento": self.get_anodelancamento,
+            "tempo_de_duracao_em_minutos": self.get_tempodeduracao,
+            "categorias": self.get_categoria,
+            "sinopse": self.get_sinopse,
+            "diretor": self.get_diretor,
+            "estudio": self.get_estudio,
+            "avaliacoes": self.get_avaliacoes,
+            "nota": self.get_classificacao,
         }

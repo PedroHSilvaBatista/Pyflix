@@ -1,3 +1,4 @@
+# Importações feitas
 import os
 import json
 from functions.menus import menu, exibir_categorias
@@ -8,6 +9,7 @@ from models.filme import Filme
 from models.serie import Serie
 from models.documentario import Documentario
 
+# Caminhos que levam até seus respectivos arquivos
 diretorio_atual = os.path.dirname(__file__)
 caminho_usuarios = os.path.join(diretorio_atual, 'data', 'usuarios.json')
 caminho_filmes = os.path.join(diretorio_atual, 'data', 'filmes.json')
@@ -16,38 +18,53 @@ caminho_documentarios = os.path.join(diretorio_atual, 'data', 'documentarios.jso
 
 
 def app():
+    # Variável de controle do status de login do usuário
     status_de_login = False
 
     while True:
         menu()
+        # Variável que armazena a opção desejada do usuário perante as funcionalidades que o sistema oferece
         opcao_usuario = input('Digite a opção desejada: ')
 
+        # Estrutura Match Case para as diferentes respostas do usuário
         match opcao_usuario:
             case '1':
+                # Estrutura que cadastra um novo usuário
                 with open(caminho_usuarios, 'r', encoding='utf-8') as arquivo:
                     dados = json.load(arquivo)
                 cadastro(dados)
             case '2':
-                tupla_de_retorno = login(status_de_login)
-                status_de_login = tupla_de_retorno[0]
-                nome_de_usuario_logado = tupla_de_retorno[1]
+                # Estrutura que permite o usuário logar em sua conta
+                retorno = login(status_de_login)
+                if type(retorno) == tuple:
+                    status_de_login = retorno[0]
+                    nome_de_usuario_logado = retorno[1]
+                else:
+                    status_de_login = retorno
             case '3':
+                # Estrutura que permite o usuário listar uma das categorias do sistema
                 print('Digite qual categoria que gostaria que fosse exibida: ')
                 exibir_categorias()
+                # Variável que armazena qual categoria o usuário quer visualizar
                 opcao_usuario_titulo = input('Digite sua opção: ')
                 match opcao_usuario_titulo:
                     case '1':
+                        # Estrutura que exibe a lista de filmes em catálogo
                         print('Aqui estão todos os filmes já catalogados')
                         Filme.listar_catalogo_de_filmes()
                     case '2':
+                        # Estrutura que exibe a lista de séries em catálogo
                         print('Aqui estão todos as séries já catalogadas')
                         Serie.listar_catalogo_de_series()
                     case '3':
+                        # Estrutura que exibe a lista de documentários em catálogo
                         print('Aqui estão todos os documentários já catalogados')
                         Documentario.listar_documentarios()
                     case _:
                         print('Por favor, digite uma opção válida')
             case '4':
+                # Estrutura que permite o usuário adicionar um novo título ao sistema
+                # Estrutura condicional que verifica se o usuário está logado para fazer uma adição
                 if status_de_login:
                     print('Digite qual categoria que gostaria de recomendar um novo título')
                     exibir_categorias()
