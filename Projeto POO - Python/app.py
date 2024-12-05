@@ -68,19 +68,25 @@ def app():
                 if status_de_login:
                     print('Digite qual categoria que gostaria de recomendar um novo título')
                     exibir_categorias()
+                    # Variável que armazena qual categoria o usuário deseja adicionar
                     opcao_usuario_adicao = input('Digite sua opção: ')
                     match opcao_usuario_adicao:
                         case '1':
+                            # Estrutura que exige as informações do filme antes que o título possa ser adicionado ao banco de dados
                             print('Para que a adição de um filme seja efetuada, é necessário informar alguns dados antes')
                             
                             nome_do_filme = input('Digite o nome do filme: ').title()
+                            # Função que verifica se o filme digitado já se encontra no banco de dados
                             encontrar_filme = encontrar_filme_no_catalogo(nome_do_filme)
-
+                            
                             if encontrar_filme:
+                                # Caso o filme seja encontrado, o usuário deverá digitar o nome de outro filme
                                 print('O filme que você está tentando cadastrar já se encontra no catálogo')
                                 print('Por favor, tente recomendar um filme que ainda não esteja cadastrado no sistema')
                             else:
+                                # Caso o filme não seja encontrado, o usuário poderá prosseguir com a adição do filme
                                 try:
+                                    # Tratamento de exceção para verificar se o usuário irá digitar o valor do tipo correto
                                     ano_de_lancamento_filme = int(input('Digite o ano de lançamento: '))
                                     tempo_de_duracao_filme = int(input('Digite o tempo de duração aproximado do filme em minutos: '))
                                     print('Digite três categorias que mais combinam com o filme selecionado')
@@ -98,11 +104,13 @@ def app():
                                     estudio_filme = input('Diga o estúdio em que foi produzido o filme: ')
                                     nota_filme = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir ao filme: '))
                                     
+                                    # Estrutura condicional para ver se o usuário digitou a nota corretamente
                                     if type(nota_filme) == float or type(nota_filme) == int:
                                         if nota_filme < 0 or nota_filme > 10:
                                             print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
                                             print('Por favor, tente novamente mais tarde.')
                                         else:
+                                            # Caso o usuário tenha digitado tudo corretamente, o filme informado subirá ao banco de dados
                                             Filme(nome_do_filme, ano_de_lancamento_filme, tempo_de_duracao_filme, generos_filme, sinopse_filme, diretor_filme, estudio_filme, nota_filme)
                                             subir_dados_filmes(Filme.catalogo_de_filmes)
                                             print('Filme recomendado com sucesso!')
@@ -111,16 +119,21 @@ def app():
                                 except ValueError:
                                     print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                         case '2':
+                            # Estrutura que exige as informações da série antes que o título possa ser adicionado ao banco de dados
                             print('Para que a adição de uma série seja efetuada, é necessário informar alguns dados antes')
 
                             nome_da_serie = input('Digite o nome da série: ').title()
+                            # Função que verifica se a série digitada já se encontra no banco de dados
                             encontrar_serie = encontrar_serie_no_catalogo(nome_da_serie)
 
                             if encontrar_serie:
+                                # Caso a série seja encontrada, o usuário deverá digitar o nome de outra série
                                 print('A série que você está tentando cadastrar já se encontra no catálogo')
                                 print('Por favor, tente recomendar uma série que ainda não esteja cadastrada no sistema')
                             else:
+                                # Caso a série não seja encontrada, o usuário poderá prosseguir com a adição da série
                                 try:
+                                    # Tratamento de exceção para verificar se o usuário irá digitar o valor do tipo correto
                                     ano_de_lancamento_serie = int(input('Digite o ano em que a série foi lançada: '))
                                     tempo_de_duracao_serie = int(input('Digite o tempo de duração total da série (pode ser um valor estimado): '))
                                     print('Digite três categorias que mais combinam com a série selecionada')
@@ -138,11 +151,13 @@ def app():
                                     numero_de_episodios_serie = int(input('Digite quantos episódios a série possui ao total (pode ser um valor aproximado): '))
                                     nota_serie = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir a série: '))
 
+                                    # Estrutura condicional para ver se o usuário digitou a nota corretamente
                                     if type(nota_serie) == float or type(nota_serie) == int:
                                         if nota_serie < 0 or nota_serie > 10:
                                             print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
                                             print('Por favor, tente novamente mais tarde.')
                                         else:
+                                            # Caso o usuário tenha digitado tudo corretamente, a série informada subirá ao banco de dados
                                             Serie(nome_da_serie, ano_de_lancamento_serie, tempo_de_duracao_serie, generos_serie, sinopse_serie,numero_de_temporadas_serie, numero_de_episodios_serie, nota_serie)
                                             subir_dados_series(Serie.catalogo_de_series)
                                             print('Série recomendada com sucesso!')
@@ -151,16 +166,20 @@ def app():
                                 except ValueError:
                                     print('Ocorreu um erro inesperado! Verifique se um dos campos foi digitado corretamante')
                         case '3':
+                            # Estrutura que exige as informações do documentário antes que o título possa ser adicionado ao banco de dados
                             print('Para que a adição de um documentário seja efetuada, é necessário informar alguns dados antes')
 
                             nome_do_documentario = input('Digite o nome do documentário: ').title()
+                            # Função que verifica se o documentário digitado já se encontra no banco de dados
                             encontrar_documentario = encontrar_documentario_no_catalogo(nome_do_documentario)
 
                             if encontrar_documentario:
+                                # Caso o documentário seja encontrado, o usuário deverá digitar o nome de outro documentário
                                 print('O documentário que você está tentando cadastrar já se encontra no catálogo')
                                 print('Por favor, tente recomendar um documentário que ainda não esteja cadastrado no sistema')
                             else:
                                 try:
+                                    # Tratamento de exceção para verificar se o usuário irá digitar o valor do tipo correto
                                     ano_de_lancamento_documentario = int(input('Digite o ano em que o documentário foi lançado: '))
                                     tempo_de_duracao_documentario = int(input('Digite o tempo de duração do documentário em minutos: '))
                                     categoria_documentario = input('Digite a categoria do documentário (Ex: Biografia, História): ')
@@ -169,10 +188,12 @@ def app():
                                     tema_documentario = input('Digite o tema a qual o documentário se trata: ')
                                     nota_documentario = float(input('Indique uma nota de 0 a 10 que gostaria de atribuir o documentário: '))
 
+                                    # Estrutura condicional para ver se o usuário digitou a nota corretamente
                                     if nota_documentario < 0 or nota_documentario > 10:
                                         print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
                                         print('Por favor, tente novamente mais tarde.')
                                     else:
+                                        # Caso o usuário tenha digitado tudo corretamente, o documentário informada subirá ao banco de dados
                                         Documentario(nome_do_documentario, ano_de_lancamento_documentario, tempo_de_duracao_documentario,categoria_documentario, sinopse_documentario, autor_documentario, tema_documentario, nota_documentario)
                                         subir_dados_documentario(Documentario.catalogo_de_documentarios)
                                         print('Documentário recomendado com sucesso!')
@@ -183,104 +204,129 @@ def app():
                 else:
                     print('Para que se possa recomendar um título, é necessário primeiro estar logado')
             case '5':
-                print('Digite qual categoria que gostaria de avaliar')
-                exibir_categorias()
-                opcao_usuario_avaliar = input('Digite sua opção: ')
-                match opcao_usuario_avaliar:
-                    case '1':
-                        print('Para que se possa avaliar um filme, é necessário primeiro digitar o nome do filme a qual se quer avaliar')
+                # Estrutura que permite o usuário avaliar um título presente no banco de dados
+                # Estrutura condicional que verifica se o usuário está logado para fazer uma avaliação
+                if status_de_login:
+                    print('Digite qual categoria que gostaria de avaliar')
+                    exibir_categorias()
+                    # Variável que armazena qual categoria o usuário deseja avaliar
+                    opcao_usuario_avaliar = input('Digite sua opção: ')
+                    match opcao_usuario_avaliar:
+                        case '1':
+                            print('Para que se possa avaliar um filme, é necessário primeiro digitar o nome do filme a qual se quer avaliar')
 
-                        usuario_nome_do_filme = input('Digite o nome do filme aqui: ').title()
-                        encontrar_filme_para_avaliar = encontrar_filme_no_catalogo(usuario_nome_do_filme)
+                            usuario_nome_do_filme = input('Digite o nome do filme aqui: ').title()
+                            # Função que verifica se o filme digitado pelo usuário existe no banco de dados
+                            encontrar_filme_para_avaliar = encontrar_filme_no_catalogo(usuario_nome_do_filme)
 
-                        if encontrar_filme_para_avaliar:
-                            try:
-                                avaliacao_do_usuario_filme = float(input(f'Indique aqui a nota que gostaria de atribuir ao filme "{usuario_nome_do_filme}": '))
-                                if avaliacao_do_usuario_filme < 0 or avaliacao_do_usuario_filme > 10:
-                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
-                                    print('Por favor, tente novamente mais tarde.')
-                                else:
-                                    for filme in Filme.catalogo_de_filmes:
-                                        if filme["nome"] == usuario_nome_do_filme:
-                                            filme["avaliacoes"].append(avaliacao_do_usuario_filme)
-                                            filme["nota"] = float(f'{sum(filme["avaliacoes"]) / len(filme["avaliacoes"]):.2f}')
-                                    subir_dados_filmes(Filme.catalogo_de_filmes)
-                                    print('Avaliação cadastrada com sucesso!')
-                            except ValueError:
-                                print('Erro! Verifique se o valor da avaliação é um número real')
-                        else:
-                            print('O filme digitado não foi encontrado')
-                            print('Por favor, verique se o nome do filme foi inserido corretamente')
-                    case '2':
-                        print('Para que se possa avaliar uma série, é necessário primeiro digitar o nome da série a qual que se avaliar')
+                            # Se o filme existir, o processo de avaliação prossegue, caso contrário, o usuário é informado que o filme digitado não foi encontrado
+                            if encontrar_filme_para_avaliar:
+                                try:
+                                    # Estrutura que verifica se a nota digitada pelo usuário é válida
+                                    avaliacao_do_usuario_filme = float(input(f'Indique aqui a nota que gostaria de atribuir ao filme "{usuario_nome_do_filme}": '))
+                                    if avaliacao_do_usuario_filme < 0 or avaliacao_do_usuario_filme > 10:
+                                        print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                        print('Por favor, tente novamente mais tarde.')
+                                    else:
+                                        # Se tudo ocorrer certo, a avaliação será registrada no banco de dados
+                                        for filme in Filme.catalogo_de_filmes:
+                                            if filme["nome"] == usuario_nome_do_filme:
+                                                filme["avaliacoes"].append(avaliacao_do_usuario_filme)
+                                                filme["nota"] = float(f'{sum(filme["avaliacoes"]) / len(filme["avaliacoes"]):.2f}')
+                                        subir_dados_filmes(Filme.catalogo_de_filmes)
+                                        print('Avaliação cadastrada com sucesso!')
+                                except ValueError:
+                                    print('Erro! Verifique se o valor da avaliação é um número real')
+                            else:
+                                print('O filme digitado não foi encontrado')
+                                print('Por favor, verique se o nome do filme foi inserido corretamente')
+                        case '2':
+                            print('Para que se possa avaliar uma série, é necessário primeiro digitar o nome da série a qual que se avaliar')
 
-                        usuario_nome_da_serie = input('Digite o nome da série aqui: ').title()
-                        encontrar_serie_para_avaliar = encontrar_serie_no_catalogo(usuario_nome_da_serie)
+                            usuario_nome_da_serie = input('Digite o nome da série aqui: ').title()
+                            # Função que verifica se a série digitada pelo usuário existe no banco de dados
+                            encontrar_serie_para_avaliar = encontrar_serie_no_catalogo(usuario_nome_da_serie)
 
-                        if encontrar_serie_para_avaliar:
-                            try:
-                                avaliacao_do_usuario_serie = float(input(f'Indique aqui a nota que gostaria de atribuir ao filme "{usuario_nome_da_serie}": '))
-                                if avaliacao_do_usuario_serie < 0 or avaliacao_do_usuario_serie > 10:
-                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
-                                    print('Por favor, tente novamente mais tarde.')
-                                else:
-                                    for serie in Serie.catalogo_de_series:
-                                        if serie["nome"] == usuario_nome_da_serie:
-                                            serie["avaliacoes"].append(avaliacao_do_usuario_serie)
-                                            serie["nota"] = float(f'{(sum(serie["avaliacoes"]) / len(serie["avaliacoes"]) / 2):.2f}')
-                                    subir_dados_series(Serie.catalogo_de_series)
-                                    print('Avaliação cadastrada com sucesso!')
-                            except ValueError:
-                                print('Erro! Verifique se o valor da avaliação é um número real')
-                        else:
-                            print('A série digitada não foi encontrada')
-                            print('Por favor, verifique se o nome da série foi inserida corretamente')
-                    case '3':
-                        print('Para que se possa avaliar um documentário, é necessário primeiro digitar o nome do documentário a qual se quer avaliar')
+                            # Se a série existir, o processo de avaliação prossegue, caso contrário, o usuário é informado que a série digitada não foi encontrada
+                            if encontrar_serie_para_avaliar:
+                                try:
+                                    # Estrutura que verifica se a nota digitada pelo usuário é válida
+                                    avaliacao_do_usuario_serie = float(input(f'Indique aqui a nota que gostaria de atribuir ao filme "{usuario_nome_da_serie}": '))
+                                    if avaliacao_do_usuario_serie < 0 or avaliacao_do_usuario_serie > 10:
+                                        print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                        print('Por favor, tente novamente mais tarde.')
+                                    else:
+                                        # Se tudo ocorrer certo, a avaliação será registrada no banco de dados
+                                        for serie in Serie.catalogo_de_series:
+                                            if serie["nome"] == usuario_nome_da_serie:
+                                                serie["avaliacoes"].append(avaliacao_do_usuario_serie)
+                                                serie["nota"] = float(f'{(sum(serie["avaliacoes"]) / len(serie["avaliacoes"]) / 2):.2f}')
+                                        subir_dados_series(Serie.catalogo_de_series)
+                                        print('Avaliação cadastrada com sucesso!')
+                                except ValueError:
+                                    print('Erro! Verifique se o valor da avaliação é um número real')
+                            else:
+                                print('A série digitada não foi encontrada')
+                                print('Por favor, verifique se o nome da série foi inserida corretamente')
+                        case '3':
+                            print('Para que se possa avaliar um documentário, é necessário primeiro digitar o nome do documentário a qual se quer avaliar')
 
-                        usuario_nome_do_documentario = input('Digite o nome do documentário aqui: ').title()
-                        encontrar_documentario_para_avaliar = encontrar_documentario_no_catalogo(usuario_nome_do_documentario)
+                            usuario_nome_do_documentario = input('Digite o nome do documentário aqui: ').title()
+                            # Função que verifica se o documentário digitado pelo usuário existe no banco de dados
+                            encontrar_documentario_para_avaliar = encontrar_documentario_no_catalogo(usuario_nome_do_documentario)
 
-                        if encontrar_documentario_para_avaliar:
-                            try:
-                                avaliacao_do_usuario_documentario = float(input(f'Indique aqui a nota que gostaria de atribuir ao documentário "{usuario_nome_do_documentario}": '))
-                                if avaliacao_do_usuario_documentario < 0 or avaliacao_do_usuario_documentario > 10:
-                                    print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
-                                    print('Por favor, tente novamente mais tarde.')
-                                else:
-                                    for documentario in Documentario.catalogo_de_documentarios:
-                                        if documentario["nome"] == usuario_nome_do_documentario:
-                                            documentario["avaliacoes"].append(avaliacao_do_usuario_documentario)
-                                            media_avaliacoes = float(f'{(sum(documentario["avaliacoes"]) / len(documentario["avaliacoes"])):.2f}')
-                                            if media_avaliacoes >= 9.0:
-                                                documentario["nota"] = 'É um dos documentários campeões do catálogo 🏅'
-                                            elif 7.5 <= media_avaliacoes < 9.0:
-                                                documentario["nota"] = 'É um documentário muito bem avaliado por quem já assistiu 🤩'
-                                            elif 6.0 <= media_avaliacoes < 7.5:
-                                                documentario["nota"] = 'É um documentário que agrada diferentes parcelas 🙂'
-                                            else:
-                                                documentario["nota"] = 'É um documentário que divide opiniões 😐'
-                                    subir_dados_documentario(Documentario.catalogo_de_documentarios)
-                                    print('Avaliação cadastrada com sucesso!')
-                            except ValueError:
-                                print('Erro! Verifique se o valor da avaliação é um número real')
-                        else:
-                            print('O documentário digitado não foi encontrado')
-                            print('Por favor, verifique se o nome do documentário foi inserido corretamente')
-                    case _:
-                        print('Por favor, digite uma opção válida')
+                            # Se o documentário existir, o processo de avaliação prossegue, caso contrário, o usuário é informado que o documentário digitado não foi encontrado
+                            if encontrar_documentario_para_avaliar:
+                                try:
+                                    # Estrutura que verifica se a nota digitada pelo usuário é válida
+                                    avaliacao_do_usuario_documentario = float(input(f'Indique aqui a nota que gostaria de atribuir ao documentário "{usuario_nome_do_documentario}": '))
+                                    if avaliacao_do_usuario_documentario < 0 or avaliacao_do_usuario_documentario > 10:
+                                        print('Nota inválida. Verifique se a nota digitada pertence ao intervalo de 0 a 10')
+                                        print('Por favor, tente novamente mais tarde.')
+                                    else:
+                                        # Se tudo ocorrer certo, a avaliação será registrada no banco de dados
+                                        for documentario in Documentario.catalogo_de_documentarios:
+                                            if documentario["nome"] == usuario_nome_do_documentario:
+                                                documentario["avaliacoes"].append(avaliacao_do_usuario_documentario)
+                                                media_avaliacoes = float(f'{(sum(documentario["avaliacoes"]) / len(documentario["avaliacoes"])):.2f}')
+                                                if media_avaliacoes >= 9.0:
+                                                    documentario["nota"] = 'É um dos documentários campeões do catálogo 🏅'
+                                                elif 7.5 <= media_avaliacoes < 9.0:
+                                                    documentario["nota"] = 'É um documentário muito bem avaliado por quem já assistiu 🤩'
+                                                elif 6.0 <= media_avaliacoes < 7.5:
+                                                    documentario["nota"] = 'É um documentário que agrada diferentes parcelas 🙂'
+                                                else:
+                                                    documentario["nota"] = 'É um documentário que divide opiniões 😐'
+                                        subir_dados_documentario(Documentario.catalogo_de_documentarios)
+                                        print('Avaliação cadastrada com sucesso!')
+                                except ValueError:
+                                    print('Erro! Verifique se o valor da avaliação é um número real')
+                            else:
+                                print('O documentário digitado não foi encontrado')
+                                print('Por favor, verifique se o nome do documentário foi inserido corretamente')
+                        case _:
+                            print('Por favor, digite uma opção válida')
+                else:
+                    print('Para que você possa avaliar um título, é necessário primeiro estar logado')
             case '6':
+                # Estrutura que permite adicionar um título à lista de desejos
+                # Estrutura condicional que verifica se o usuário está logado
                 if status_de_login:
                     print('Digite qual categoria que gostaria de adicionar à lista de desejos')
                     exibir_categorias()
+                    # Variável que armazena qual categoria o usuário deseja adicionar à lista de desejos
                     opcao_usuario_lista_de_desejos = input('Digite sua opção: ')
                     match opcao_usuario_lista_de_desejos:
                         case '1':
                             print('Lista de filmes disponíveis em catálogo:')
+                            # Função que permite o usuário visualizar o catálogo de filmes disponíveis
                             Filme.listar_catalogo_de_filmes()
                             usuario_nome_do_filme_lista = input('Digite aqui o nome do filme que queira adicionar à lista de desejos: ').title()
+                            # Função que verifica se o filme digitado pelo usuário existe no catálogo
                             encontrar_filme_lista = encontrar_filme_no_catalogo(usuario_nome_do_filme_lista)
+                            # Se o filme existir, o processo de adição à lista de desejos prossegue, caso contrário, o usuário é informado que o filme digitado não foi encontrado
                             if encontrar_filme_lista:
+                                # Estrutura que adiciona o filme desejado à lista de desejos do usuário
                                 for filme in Filme.catalogo_de_filmes:
                                     if filme["nome"] == usuario_nome_do_filme_lista:
                                         with open(caminho_usuarios, 'r', encoding='utf-8') as arquivo_leitura_filme_usuarios:
@@ -294,10 +340,14 @@ def app():
                                 print('Por favor, verifique se o nome do filme foi inserido corretamente')
                         case '2':
                             print('Lista de séris disponíveis em catálogo:')
+                            # Função que permite o usuário visualizar o catálogo de séries disponíveis
                             Serie.listar_catalogo_de_series()
                             usuario_nome_da_serie_lista = input('Digite aqui o nome da série que queira adicionar à lista de desejos: ').title()
+                            # Função que verifica se a série digitada pelo usuário existe no catálogo
                             encontrar_serie_lista = encontrar_serie_no_catalogo(usuario_nome_da_serie_lista)
+                            # Se a série existir, o processo de adição à lista de desejos prossegue, caso contrário, o usuário é informado que a série digitada não foi encontrada
                             if encontrar_serie_lista:
+                                # Estrutura que adiciona a série desejada à lista de desejos do usuário
                                 for serie in Serie.catalogo_de_series:
                                     if serie["nome"] == usuario_nome_da_serie_lista:
                                         with open(caminho_usuarios, 'r', encoding='utf-8') as arquivo_leitura_series_usuarios:
@@ -311,10 +361,14 @@ def app():
                                 print('Por favor, verifique se o nome da série foi inserida corretamente')
                         case '3':
                             print('Lista de documentários em catálogo:')
+                            # Função que permite o usuário visualizar o catálogo de documentários disponíveis
                             Documentario.listar_documentarios()
                             usuario_nome_do_documentario_lista = input('Digite aqui o nome do documentário que queira adicionar à lista de desejos: ').title()
+                            # Função que verifica se o documentário digitado pelo usuário existe no catálogo
                             encontrar_documentario_lista = encontrar_documentario_no_catalogo(usuario_nome_do_documentario_lista)
+                            # Se o documentário existir, o processo de adição à lista de desejos prossegue, caso contrário, o usuário é informado que o documentário digitado não foi encontrado
                             if encontrar_documentario_lista:
+                                # Estrutura que adiciona o documentário desejado à lista de desejos do usuário
                                 for documentario in Documentario.catalogo_de_documentarios:
                                     if documentario["nome"] == usuario_nome_do_documentario_lista:
                                         with open(caminho_usuarios, 'r', encoding='utf-8') as arquivo_leitura_documentarios_usuarios:
@@ -329,6 +383,8 @@ def app():
                 else:
                     print('Para que você possa adicionar um título à lista de desejos, é necessário primeiro estar logado')
             case '7':
+                # Estrutura que exibe ao usuário os títulos adicionados à lista de desejos e permite visualizar o tempo de reprodução de todas as obras
+                # Estrutura condicional que verifica se o usuário está logado
                 if status_de_login:
                     print('Aqui estão todos os títulos que você já adicionou até o momento à sua lista de desejos:')
                     with open(caminho_usuarios, 'r', encoding='utf-8') as arquivo_leitura_tempo_de_maratona:
@@ -341,12 +397,14 @@ def app():
                 else:
                     print('Para que você possa ver o tempo de reprodução total dos títulos adicionados à lista de desejos é necessário primeiro estar logado')
             case '8':
+                # Estrutura que permite o usuário sair da conta caso o indivíduo esteja logado
                 if status_de_login:
                     status_de_login = False
                     print('Deslogado com sucesso!')
                 else:
                     print('Não é possível deslogar se você não estiver logado')
             case '9':
+                # Estrutura que permite o usuário sair do programa
                 print('Volte sempre :)')
                 print('Encerrando o programa...')
                 break
